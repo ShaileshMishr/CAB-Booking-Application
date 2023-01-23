@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages ="com.training.springmvc")
+@ComponentScan(basePackages ="com.capstone.cab")
 public class SpringConfig {
 	
 	@Bean

@@ -9,7 +9,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.training.springmvc")
+@EnableJpaRepositories(basePackages = "com.capstone.cab")
 public class JpaConfig {
 	
 	@Bean
