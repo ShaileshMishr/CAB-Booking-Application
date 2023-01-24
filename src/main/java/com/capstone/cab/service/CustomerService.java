@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Customer;
 import com.capstone.cab.repository.CustomerRepo;
 
 
-
 @Service
-public class CustomerService {
+public class CustomerService implements CustomerMethod {
 	
 	@Autowired 
 	CustomerRepo cusrepo;
@@ -22,7 +22,7 @@ public class CustomerService {
 		return cus;
 	}
 	
-	public void saveUser(Customer cust) {
+	public void saveCustomers(Customer cust) {
 		cusrepo.save(cust);
 	}
 	
@@ -38,4 +38,57 @@ public class CustomerService {
 		return customerid;
 		}
 
+		
+	
+	//### INSERT CUSTOMER ###
+	   @Override
+		public boolean insertCustomer(Customer customer) throws CustomerException {
+			// TODO Auto-generated method stub
+
+			
+			Customer c1 = cusrepo.save(customer);
+			if(c1 != null)
+				return true;
+			else {
+				return false;
+			}
+		}
+
+	   public List<Customer> listUsers(){
+			return cusrepo.findAll();
+		}
+		
+		public Customer getCustomer(int customerId) {
+			return cusrepo.findById(customerId).get();
+		}
+		
+		public void deleteCustomer(int customerId) {
+			cusrepo.deleteById(customerId);
+		}
+
+
+//	@Override
+//	public Customer updateCustomer(Customer customer) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Customer deleteCustomer(Integer customerId) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public List<Customer> getAllCustomers() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Customer getCustomerById(Integer customerId) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	
 }

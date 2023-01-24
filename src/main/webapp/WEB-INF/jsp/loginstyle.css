@@ -10,7 +10,7 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url(images/car4.jpg);
+	background-image: url(https://i.ibb.co/VQS1SL0/car4.jpg);
 }
 input, button{
 	border: none;
@@ -21,7 +21,7 @@ input, button{
 	overflow: hidden;
 	position: relative;
 	width: 900px;
-	height: 550px;
+	height: 570px;
 	background: #fff;
 }
 .form{
@@ -146,7 +146,7 @@ button{
 	top: 0;
 	width: 900px;
 	height: 100%;
-	background-image: url(images/car5.jpg);
+	background-image: url(https://i.ibb.co/QMJ3qC4/car5.jpg);
 	background-size: cover;
 	transition: -webkit-transform 1.2s ease-in-out;
 	transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
@@ -207,7 +207,7 @@ button{
 	-webkit--transition-timing-function: ease-out;
 	         transition-timing-function: ease-out;
 	-webkit-transition-duration: 1.2s;
-	        transition-duration: 1.2s:
+	        transition-duration: 1.2s;
 	-webkit-transform: translate3d(640px, 0, 0);
 	        transform: translate3d(640px, 0, 0); 
 }

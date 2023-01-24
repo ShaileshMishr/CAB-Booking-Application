@@ -36,23 +36,23 @@ public class Driver extends AbstractUser{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer driverId;
 	
-	
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	 private boolean available = true;
 	
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private Float rating;
 	
 	@Column(unique = true)
 	@NotNull
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private String licenceNo;
 	
-	//@JsonIgnore
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cabdriver", orphanRemoval = true)
 	private List<TripDetails> tripList = new ArrayList<>();
 	
-//	@Embedded
-//	private AbstractUser user;
 	
-//	@JsonIgnore
+
 	@OneToOne(cascade = CascadeType.ALL ,orphanRemoval = true)
 	private Cab cab;
 

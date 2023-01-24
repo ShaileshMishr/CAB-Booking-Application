@@ -17,7 +17,7 @@
 			
 			<div>
 				<a href="login" style=" text-decoration: none; color: red;"><span>Customer</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="driver" style=" text-decoration: none; color: red;"><span >Driver</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#signupform" style=" text-decoration: none; color: red;"><span >Driver</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="admin" style=" text-decoration: none; color: red;"><span >Admin</span></a>
 				
 			
@@ -53,11 +53,18 @@
 				</div>
 			</div>
 			<div class="form sign-up">
-				<h2>Sign Up</h2>
+				<h2>Sign Up</h2><br>
+					<div>
+				<a href="login" style=" text-decoration: none; color: red;"><span>Customer</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="driver" style=" text-decoration: none; color: red;"><span >Driver</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="admin" style=" text-decoration: none; color: red;"><span >Admin</span></a>
+				
+			
+			</div>
 				<form id="signupform">
 				<label>
-					<span>Name</span>
-					<input type="text" required>
+					<span>Driver Name</span>
+				<input type="text" name="name" required>
 				</label>
 				<label>
 					<span>Email</span>
@@ -65,17 +72,29 @@
 				</label>
 				<label>
 					<span>Password</span>
-					<input type="password" required>
+					<input type="password" name="pass" required>
 				</label>
 				<label>
-					<span>Confirm Password</span>
-					<input type="password" required>
+					<span>Mobile</span>
+					<input type="text" name="mob" required>
+				</label>
+				<label>
+					<span>Address</span>
+					<input type="text" name="add" required>
 				</label>
 				<button type="submit" class="submit">Sign Up Now</button>
 			</form>
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="script.js"></script>
+<script>
+
+document.querySelector('.img-btn').addEventListener('click', function()
+		  {
+			 document.querySelector('.cont').classList.toggle('s-signup')
+		   }
+		);
+
+</script>
 </body>
 </html>

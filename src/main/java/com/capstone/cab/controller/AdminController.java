@@ -4,13 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Customer;
 import com.capstone.cab.service.AdminService;
 import com.capstone.cab.service.LoginService;
 
@@ -20,6 +23,7 @@ public class AdminController {
 	@Autowired
 	LoginService service;
 	
+	@Autowired
 	AdminService aservice;
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -61,4 +65,33 @@ else {
 
 	}
 	
+	//### Add New Admin ###
+	
+		@RequestMapping(value="/addtoadmin" ,method=RequestMethod.POST)
+		public String save(Model map, HttpServletRequest request) throws CustomerException {
+			Admin admin = new Admin();
+			String name= request.getParameter("name");
+			String email= request.getParameter("email");
+			String mobile= request.getParameter("pass");
+			String password= request.getParameter("mob");
+			String address= request.getParameter("add");
+			
+			admin.setUserName(name);
+			admin.setEmail(email);
+			admin.setMobile(mobile);
+			admin.setPassword(password);
+			admin.setAddress(address);
+			
+			aservice.save(admin);
+			map.addAttribute("userText", "Admin data saved Successfully");
+			return "sucess";
+			
+		}
+	
+//	@RequestMapping(value="/addtoadmin" ,method=RequestMethod.POST)
+//	public String save(@ModelAttribute Admin ad)  {
+//		aservice.save(ad);
+//		return "sucess";
+//		
+//	}
 }

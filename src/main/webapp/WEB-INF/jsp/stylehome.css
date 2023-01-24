@@ -12,7 +12,7 @@ html{
     scroll-behavior: smooth;
 }
 .main-container{
-    background: url(images/background.png);
+    background: url(https://i.ibb.co/8ghQvST/background.png);
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -202,7 +202,7 @@ background: white;
 
 }
 .fast-booking{
-    background: url(images/secbg.png);
+    background: url(https://i.ibb.co/YkssFP1/secbg.png);
     background-size: cover;
     width: 100%;
     background-position: center;
@@ -257,7 +257,7 @@ background: white;
 }
 
 .testimonials{
-    background: url(images/testimonial\ back.png);
+    background: url(https://i.ibb.co/m6xHT37/testimonial-back.png);
     background-size: cover;
     background-position: center;
     width: 100%;

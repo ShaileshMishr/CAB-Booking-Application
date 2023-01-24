@@ -17,9 +17,9 @@
             <h2>book a <span>cab now</span></h2><br><br>
         </div>
         <header class="header">
-            <a href="#" id="logo"><img src="images/CabHUB.png" alt=""></a>
+            <a href="#" id="logo"><img src="https://t4.ftcdn.net/jpg/03/14/92/41/360_F_314924181_YZCwxSQtQtTADJaPtd1o7Y9wHZNDQWOp.jpg" style=" height: 50px; width: 250px;"></a>
             <nav class="navbar">
-                <a href="#home">Home</a>
+                <a href="home">Home</a>
                 <a href="login">Login</a>
                 <a href="#service">Services</a>
                 
@@ -30,7 +30,7 @@
         </header>
         <div class="taxi-image">
             
-            <img src="images/carmain.png" alt="" />
+            <img src="https://i.ibb.co/x6xbBjB/carmain.png" alt="" />
         </div>
     </div>
 
@@ -54,7 +54,7 @@
     <div class="inner-tarrif">
         <div class="tarrif-container">
             <div class="inner-box">
-                <img src="images/min.jpg" alt="">
+                <img src="https://i.ibb.co/TLxMHWw/min.jpg" alt="">
                 <h2>Mini</h2>
                 <p>We provide a mini cars. It takes less fare. We have mini cooper, swift dzire, waganor in mini car type.</p>
                 <h3>price: 15Rs/km /-</h3>
@@ -64,7 +64,7 @@
 
         <div class="tarrif-container">
             <div class="inner-box">
-                <img src="images/image1.png" alt="">
+                <img src="https://i.ibb.co/svZsqNB/image1.png" alt="">
                 <h2 class="heading-yellow">Sedan</h2>
                 <p>We provide a sedan cars. It takes 20rs per km fare. We have bmw, ciaz,verna and honda city in sedan car type.</p>
                 <h3 class="yellw-section">price: 20Rs/km /-</h3>
@@ -74,7 +74,7 @@
 
         <div class="tarrif-container">
             <div class="inner-box">
-                <img src="images/su.jpeg" alt="">
+                <img src="https://i.ibb.co/4fHYKCq/su.jpg" alt="">
                 <h2>SUV</h2>
                 <p>We provide a suv cars. It takes more fare rather then mini and suv. We have fortuner, xuv700, thar, defender in suv car type.</p>
                 <h3>price: 25Rs/km /-</h3>
@@ -151,7 +151,7 @@
                 also very less. Best experience in my life.
             </p>
             <div class="clients">
-                <img src="images/shai.jpg" alt="" style="border-radius: 50%; height: 74px; width: 74px;">
+                <img src="https://i.ibb.co/yNH98Zz/shai.jpg" alt="" style="border-radius: 50%; height: 74px; width: 74px;">
                 <h1>Shailesh Mishra</h1>
             </div>
         </div>
@@ -160,7 +160,7 @@
                  what but drivers are so wonderful and a very good friendly. As a matter of fact; I got back 
                  my iPhone because of, how honest They are with brilliant service.</p>
             <div class="clients">
-                <img src="images/anu.jpg" alt="" style="border-radius: 50%; height: 74px; width: 74px;">
+                <img src="https://i.ibb.co/HKTGPCf/anu.jpg" alt="" style="border-radius: 50%; height: 74px; width: 74px;">
                 <h1>Anupama</h1>
             </div>
         </div>
@@ -177,7 +177,7 @@
         <a  href="#" class="fa fa-twitter" ></a>
             <a href="#" class="fa fa-linkedin"></a> 
             </center>
-           <p style="text-align: center;">© 2023 Cabhub.com, The World's Leading Cab Booking Service™</p>
+           <p style="text-align: center;">© 2023 Taxi.com, The World's Leading Cab Booking Service™</p>
            </footer>
 
             </div>

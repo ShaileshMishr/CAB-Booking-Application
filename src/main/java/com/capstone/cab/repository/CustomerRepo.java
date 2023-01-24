@@ -10,6 +10,7 @@ import com.capstone.cab.model.Customer;
 
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
-	
+//	@Query("select c from Customer c where c.userName=?6 AND c.password=?5")
+//	public Customer getCustomerByUsernameAndpassword(String userName, String password);
 
 }

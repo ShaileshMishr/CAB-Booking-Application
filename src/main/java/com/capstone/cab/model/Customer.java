@@ -36,7 +36,7 @@ public class Customer extends AbstractUser {
 	private Integer customerId;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
-	//@JsonIgnore
+	
 	private List<TripDetails> triplist = new ArrayList<>();
 
 }

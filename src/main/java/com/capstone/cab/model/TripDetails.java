@@ -60,7 +60,6 @@ public class TripDetails {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 	
-//	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver cabdriver;
 	

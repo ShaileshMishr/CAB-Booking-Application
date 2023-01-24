@@ -12,8 +12,10 @@
     <div id="card-content">
       <div id="card-title">
         <h2>Status</h2>
+        
         <div class="underline-title"></div>
         <h1> **Item Added Successfully**</h1>
+        <a href="getCustomer">Customer Data</a>
       </div>
        </div>
    </div>

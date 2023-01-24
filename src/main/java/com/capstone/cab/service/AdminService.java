@@ -36,4 +36,11 @@ public List<Admin> getAdmins(){
 		return adminid;
 		}
 
+
+	// Insert Admin
+	
+	public void save(Admin admin) {
+		admrepo.save(admin);
+	}
+	
 }
