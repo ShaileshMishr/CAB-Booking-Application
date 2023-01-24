@@ -15,7 +15,11 @@
         
         <div class="underline-title"></div>
         <h1> **Item Added Successfully**</h1>
-        <a href="getCustomer">Customer Data</a>
+       <h1>${cname}</h1>
+		<h1>${cid}</h1>
+		<h1>${cemail}</h1>
+		<h1>${cmob}</h1>
+		<h1>${caddr}</h1>
       </div>
        </div>
    </div>

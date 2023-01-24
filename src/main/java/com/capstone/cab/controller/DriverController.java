@@ -33,6 +33,14 @@ public class DriverController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/driverhome", method = RequestMethod.GET)
+	public ModelAndView displayHello1() {
+		ModelAndView mav = new ModelAndView("DriverHome");
+		mav.addObject("message", "LOGIN PAGE!");
+		//map.addAttribute("message", "LOGIN PAGE!");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/driverLogin", method = RequestMethod.POST)
 	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("driver") Driver driver) {
 		
@@ -47,7 +55,7 @@ public class DriverController {
 			//ModelAndView mav1 = new ModelAndView("product");
 			//List<Cab> cabs= pservice.getProducts();
 			//mav1.addObject("allProducts", products);
-			ModelAndView mav1 = new ModelAndView("sucess");
+			ModelAndView mav1 = new ModelAndView("DriverHome");
 			return mav1;
 			}
 		
@@ -71,19 +79,41 @@ else {
 				Driver driver = new Driver();
 				String name= request.getParameter("name");
 				String email= request.getParameter("email");
-				String mobile= request.getParameter("pass");
-				String password= request.getParameter("mob");
+				String mobile= request.getParameter("mob");
+				String licence= request.getParameter("lic");
+				String password= request.getParameter("pass");
 				String address= request.getParameter("add");
 				
 				driver.setUserName(name);
 				driver.setEmail(email);
 				driver.setMobile(mobile);
+				driver.setLicenceNo(licence);
 				driver.setPassword(password);
 				driver.setAddress(address);
 				
 				dservice.save(driver);
 				map.addAttribute("userText", "Driver data saved Successfully");
 				return "sucess";
+				
+			}
+			
+			//### View Driver ###
+			
+			@RequestMapping(value="/getDriver" ,method=RequestMethod.GET)
+			public String getVal(Model map, HttpServletRequest request) {
+				//String userName = request.getParameter("dname");
+				//String password = request.getParameter("dpwd");
+				//int driverId=dservice.getDriverId(userName, password);
+				int driverId = 201;
+				Driver driver = dservice.getDriver(driverId);
+				
+				map.addAttribute("dname", driver.getUserName());
+				map.addAttribute("dId", driver.getDriverId());
+				map.addAttribute("demail", driver.getEmail());
+				map.addAttribute("dmob", driver.getMobile());
+				map.addAttribute("dlic", driver.getLicenceNo());
+				map.addAttribute("daddr", driver.getAddress());
+				return "DriverData";
 				
 			}
 	

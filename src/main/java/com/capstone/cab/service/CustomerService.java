@@ -54,41 +54,27 @@ public class CustomerService implements CustomerMethod {
 			}
 		}
 
+	   //### GET CUSTOMER ###
+	   
 	   public List<Customer> listUsers(){
 			return cusrepo.findAll();
 		}
 		
+	   
+	   //### GET CUSTOMER BY ID ###
 		public Customer getCustomer(int customerId) {
 			return cusrepo.findById(customerId).get();
 		}
 		
+		
+		//### DELETE CUSTOMER ###
 		public void deleteCustomer(int customerId) {
 			cusrepo.deleteById(customerId);
 		}
 
 
-//	@Override
-//	public Customer updateCustomer(Customer customer) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Customer deleteCustomer(Integer customerId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Customer> getAllCustomers() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Customer getCustomerById(Integer customerId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
+
+
 	
 }

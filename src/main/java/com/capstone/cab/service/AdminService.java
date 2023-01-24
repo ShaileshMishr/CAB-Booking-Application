@@ -43,4 +43,9 @@ public List<Admin> getAdmins(){
 		admrepo.save(admin);
 	}
 	
+	 //### GET ADMIN BY ID ###
+	public Admin getAdmin(int adminId) {
+		return admrepo.findById(adminId).get();
+	}
+	
 }

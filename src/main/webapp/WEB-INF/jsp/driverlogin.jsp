@@ -61,7 +61,7 @@
 				
 			
 			</div>
-				<form id="signupform">
+				<form id="signupform" action="addtodriver" method="post">
 				<label>
 					<span>Driver Name</span>
 				<input type="text" name="name" required>
@@ -77,6 +77,10 @@
 				<label>
 					<span>Mobile</span>
 					<input type="text" name="mob" required>
+				</label>
+				<label>
+					<span>LicenceNo</span>
+					<input type="text" name="lic" required>
 				</label>
 				<label>
 					<span>Address</span>

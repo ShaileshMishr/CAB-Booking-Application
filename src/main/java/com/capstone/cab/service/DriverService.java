@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capstone.cab.model.Admin;
 import com.capstone.cab.model.Driver;
 import com.capstone.cab.repository.DriverRepo;
 
@@ -42,5 +41,10 @@ public List<Driver> getDrivers(){
 	
 		public void save(Driver driver) {
 			drirepo.save(driver);
+		}
+		
+		 //### GET Driver BY ID ###
+		public Driver getDriver(int driverId) {
+			return drirepo.findById(driverId).get();
 		}
 }

@@ -65,6 +65,13 @@ public class CustomerController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/customerhome", method = RequestMethod.GET)
+	public ModelAndView displayHello1() {
+		ModelAndView mav = new ModelAndView("CustomerHome");
+		mav.addObject("message", "LOGIN PAGE!");
+		//map.addAttribute("message", "LOGIN PAGE!");
+		return mav;
+	}
 	
 	// Login Process
 	@RequestMapping(value = "/processLogin", method = RequestMethod.POST)
@@ -81,7 +88,7 @@ public class CustomerController {
 			//ModelAndView mav1 = new ModelAndView("product");
 			//List<Cab> cabs= pservice.getProducts();
 			//mav1.addObject("allProducts", products);
-			ModelAndView mav1 = new ModelAndView("sucess");
+			ModelAndView mav1 = new ModelAndView("CustomerHome");
 			return mav1;
 			}
 		
@@ -107,8 +114,8 @@ else {
 		Customer customer = new Customer();
 		String name= request.getParameter("name");
 		String email= request.getParameter("email");
-		String mobile= request.getParameter("pass");
-		String password= request.getParameter("mob");
+		String mobile= request.getParameter("mob");
+		String password= request.getParameter("pass");
 		String address= request.getParameter("add");
 		
 		customer.setUserName(name);
@@ -123,14 +130,25 @@ else {
 		
 	}
 	
-//	@RequestMapping(value="/getCustomer" ,method=RequestMethod.GET)
-//	public String getVal(Model map, HttpServletRequest request) {
-//		//int customerId=cservice.getCustomerId();
-//		Customer customer = cservice.getCustomer(customerId);
-//		System.out.println("Customer Name: "+customer.getUserName());
-//		map.addAttribute("cId", customer.getUserName());
-//		return "sucess";
-//		
-//	}
+	//### View customer ###
+	
+	@RequestMapping(value="/getCustomer" ,method=RequestMethod.GET)
+	public String getVal(Model map, HttpServletRequest request) {
+		String userName = request.getParameter("uname");
+		String password = request.getParameter("pwd");
+		//int customerId=cservice.getCustomerId(userName, password);
+		int customerId = 102;
+		Customer customer = cservice.getCustomer(customerId);
+		
+		map.addAttribute("cname", customer.getUserName());
+		map.addAttribute("cId", customer.getCustomerId());
+		map.addAttribute("cemail", customer.getEmail());
+		map.addAttribute("cmob", customer.getMobile());
+		map.addAttribute("caddr", customer.getAddress());
+		return "CusData";
+		
+	}
+	
+	
 
 }

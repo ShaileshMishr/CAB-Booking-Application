@@ -36,15 +36,10 @@ public class Driver extends AbstractUser{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer driverId;
 	
-	//@GeneratedValue(strategy = GenerationType.AUTO)
-	 private boolean available = true;
 	
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = true)
 	private Float rating;
 	
-	@Column(unique = true)
-	@NotNull
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private String licenceNo;
 	
 	

@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Admin;
-import com.capstone.cab.model.Customer;
 import com.capstone.cab.service.AdminService;
 import com.capstone.cab.service.LoginService;
 
@@ -34,6 +33,14 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/adminhome", method = RequestMethod.GET)
+	public ModelAndView displayHello1() {
+		ModelAndView mav = new ModelAndView("AdminHome");
+		mav.addObject("message", "LOGIN PAGE!");
+		//map.addAttribute("message", "LOGIN PAGE!");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("admin") Admin admin) {
 		
@@ -48,7 +55,7 @@ public class AdminController {
 			//ModelAndView mav1 = new ModelAndView("product");
 			//List<Cab> cabs= pservice.getProducts();
 			//mav1.addObject("allProducts", products);
-			ModelAndView mav1 = new ModelAndView("sucess");
+			ModelAndView mav1 = new ModelAndView("AdminHome");
 			return mav1;
 			}
 		
@@ -72,8 +79,8 @@ else {
 			Admin admin = new Admin();
 			String name= request.getParameter("name");
 			String email= request.getParameter("email");
-			String mobile= request.getParameter("pass");
-			String password= request.getParameter("mob");
+			String mobile= request.getParameter("mob");
+			String password= request.getParameter("pass");
 			String address= request.getParameter("add");
 			
 			admin.setUserName(name);
@@ -88,10 +95,25 @@ else {
 			
 		}
 	
-//	@RequestMapping(value="/addtoadmin" ,method=RequestMethod.POST)
-//	public String save(@ModelAttribute Admin ad)  {
-//		aservice.save(ad);
-//		return "sucess";
-//		
-//	}
+
+		//### View Admin ###
+		
+		@RequestMapping(value="/getAdmin" ,method=RequestMethod.GET)
+		public String getVal(Model map, HttpServletRequest request) {
+			//String userName = request.getParameter("aname");
+			//String password = request.getParameter("apwd");
+			//int adminId=aservice.getAdminId(userName, password);
+			int adminId = 111;
+			Admin admin = aservice.getAdmin(adminId);
+			
+			map.addAttribute("aname", admin.getUserName());
+			map.addAttribute("aId", admin.getAdminId());
+			map.addAttribute("aemail", admin.getEmail());
+			map.addAttribute("amob", admin.getMobile());
+			map.addAttribute("aaddr", admin.getAddress());
+			return "AdminData";
+			
+		}
+		
+		
 }
