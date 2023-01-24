@@ -48,4 +48,11 @@ public List<Admin> getAdmins(){
 		return admrepo.findById(adminId).get();
 	}
 	
+	//### DELETE Admin ###
+	
+			public void deleteAdmin(int adminId) {
+				admrepo.deleteById(adminId);
+				
+			}
+	
 }

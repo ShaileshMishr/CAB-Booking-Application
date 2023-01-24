@@ -21,7 +21,7 @@
     <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="Card image" style="width:100%">
     <div class="card-body">
       <h3 class="card-title">${cname}</h3>
-      <p class="card-text"><b>Customer ID:</b> ${cid}</p>
+      <p class="card-text"><b>Customer ID:</b> ${cId}</p>
       <p class="card-text"><b>Customer Name:</b> ${cname}</p>
       <p class="card-text"><b>Customer Email:</b> ${cemail}</p>
       <p class="card-text"><b>Customer Mobile:</b> ${cmob}</p>
@@ -29,8 +29,8 @@
       
       <div>
       <a href="deletecustomer" class="btn btn-danger">Delete Account</a> 
-       <a href="customerhome" class="btn btn-info">Customer Home</a>
-       <a href="updatecustomer" class="btn btn-success">Update Account</a> 
+      
+       <a href="update/${customer.getCustomerId()}/${customer.getUserName()}/${customer.getEmail()}/${customer.getPassword()}/${customer.getMobile()}/${customer.getAddress()}"" class="btn btn-success">Update Account</a> 
       
       </div>
      

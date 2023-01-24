@@ -1,6 +1,7 @@
 package com.capstone.cab.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,13 +69,43 @@ public class CustomerService implements CustomerMethod {
 		
 		
 		//### DELETE CUSTOMER ###
-		public void deleteCustomer(int customerId) {
-			cusrepo.deleteById(customerId);
+
+		@Override
+		public Customer deleteCustomer(Integer customerId) {
+			Optional<Customer> optional = cusrepo.findById(customerId);
+
+			if (optional.isPresent()) {
+
+				Customer existingCustomer = optional.get();
+
+				cusrepo.delete(existingCustomer);
+
+
+				return existingCustomer;
+		}else {
 		}
+			return null;
+}
 
-
-
-
-
-	
+		
+		//UPDATE CUSTOMER
+		
+		@Override
+		public Customer updateCustomer(Customer customer) {
+			//cusrepo.findById(customer.getCustomerId());
+			return cusrepo.save(customer);
+		}
+		
+		
+//	public boolean updateCustomer(Customer customer) {
+//	
+//		cusrepo.findById(customerId).get();
+//		
+//		Customer c1 = cusrepo.save(customer);
+//		if(c1 != null)
+//			return true;
+//		else {
+//			return false;
+//		}
+//	}
 }

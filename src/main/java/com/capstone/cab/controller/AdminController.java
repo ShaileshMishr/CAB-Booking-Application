@@ -1,6 +1,7 @@
 package com.capstone.cab.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
-	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("admin") Admin admin) {
+	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("admin") Admin admin, HttpSession session) {
 		
 		
 		String userName = request.getParameter("aname");
@@ -52,6 +53,9 @@ public class AdminController {
 		if(service.validateAdmin(userName, password)) {
 			map.addAttribute("aname",userName);
 			map.addAttribute("adminId",adminId);
+			session.setAttribute("aname", userName);
+			session.setAttribute("apwd", password);
+
 			//ModelAndView mav1 = new ModelAndView("product");
 			//List<Cab> cabs= pservice.getProducts();
 			//mav1.addObject("allProducts", products);
@@ -99,11 +103,11 @@ else {
 		//### View Admin ###
 		
 		@RequestMapping(value="/getAdmin" ,method=RequestMethod.GET)
-		public String getVal(Model map, HttpServletRequest request) {
-			//String userName = request.getParameter("aname");
-			//String password = request.getParameter("apwd");
-			//int adminId=aservice.getAdminId(userName, password);
-			int adminId = 111;
+		public String getVal(Model map, HttpServletRequest request,HttpSession session) {
+			String userName = (String) session.getAttribute("aname");
+			String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
+			//int adminId = 111;
 			Admin admin = aservice.getAdmin(adminId);
 			
 			map.addAttribute("aname", admin.getUserName());
@@ -112,6 +116,18 @@ else {
 			map.addAttribute("amob", admin.getMobile());
 			map.addAttribute("aaddr", admin.getAddress());
 			return "AdminData";
+			
+		}
+		
+		//### Delete customer ###
+		
+		@RequestMapping(value="/deleteadmin" ,method=RequestMethod.GET)
+		public  String deleteAdmin(Model map,HttpSession session){
+			String userName = (String) session.getAttribute("aname");
+			String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
+			aservice.deleteAdmin(adminId);
+			return "login";
 			
 		}
 		

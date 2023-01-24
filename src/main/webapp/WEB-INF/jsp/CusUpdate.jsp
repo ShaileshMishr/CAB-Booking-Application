@@ -16,19 +16,9 @@
 			
 			<h2>Customer Update Form</h2><br>
 			
-		
-		</div>
-		<div class="sub-cont">
-			<div class="img">
-			
-				
-			</div>
-			<div class="form sign-up">
-				<h2>Update</h2><br>
-				
-				<form id="signupform" action="updatecustomer" method="post">
-				<label>
-					<span>Customer ID</span>
+			<form id="signupform" action="<%=request.getContextPath()%>/updateCustomer" method="post">
+				<label style="color:red;">
+					<span >Customer ID</span>
 					<input type="text" value="${customerId}" name="cid" readonly>
 				</label>
 				<label>
@@ -53,9 +43,16 @@
 				</label>
 				<button type="submit" class="submit">Update Now</button>
 			</form>
-				<h3>${updateMsg}</h3>
-			</div>
+		
 		</div>
+		 <div class="sub-cont">
+			<div class="img">
+			
+				
+			</div>
+		</div> 
+		
+		<h3 style="color:red">${updateMsg}</h3>
 	</div>
 
 </body>

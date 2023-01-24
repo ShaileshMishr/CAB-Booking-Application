@@ -14,15 +14,12 @@
    <a class="active" href="home">Home</a>
   <a href="getDriver">Profile</a>
   <a href="#about">Update</a>
-  <a href="#contact">Delete</a>
+  <a href="deletedriver">Delete</a>
+   <a>Driver Page</a>
   <b><p style="text-align: right;">Welcome ${dname}</p></b>
   
   <div class="login-container">
-   <!--  <form action="/action_page.php">
-      <input type="text" placeholder="Username" name="username">
-      <input type="text" placeholder="Password" name="psw">
-      <button type="submit">Login</button>
-    </form> -->
+  
   </div>
 </div>
 	 

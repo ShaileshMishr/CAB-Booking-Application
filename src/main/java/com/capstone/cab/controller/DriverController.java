@@ -1,6 +1,7 @@
 package com.capstone.cab.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Customer;
 import com.capstone.cab.model.Driver;
 import com.capstone.cab.service.DriverService;
 import com.capstone.cab.service.LoginService;
@@ -42,7 +44,7 @@ public class DriverController {
 	}
 	
 	@RequestMapping(value = "/driverLogin", method = RequestMethod.POST)
-	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("driver") Driver driver) {
+	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("driver") Driver driver,HttpSession session) {
 		
 		
 		String userName = request.getParameter("dname");
@@ -52,6 +54,8 @@ public class DriverController {
 		if(service.validateDriver(userName, password)) {
 			map.addAttribute("dname",userName);
 			map.addAttribute("driverId",driverId);
+			session.setAttribute("dname", userName);
+			session.setAttribute("dpwd", password);
 			//ModelAndView mav1 = new ModelAndView("product");
 			//List<Cab> cabs= pservice.getProducts();
 			//mav1.addObject("allProducts", products);
@@ -100,11 +104,11 @@ else {
 			//### View Driver ###
 			
 			@RequestMapping(value="/getDriver" ,method=RequestMethod.GET)
-			public String getVal(Model map, HttpServletRequest request) {
-				//String userName = request.getParameter("dname");
-				//String password = request.getParameter("dpwd");
-				//int driverId=dservice.getDriverId(userName, password);
-				int driverId = 201;
+			public String getVal(Model map, HttpServletRequest request,HttpSession session) {
+				String userName = (String) session.getAttribute("dname");
+				String password = (String) session.getAttribute("dpwd");
+				int driverId=dservice.getDriverId(userName, password);
+				//int driverId = 201;
 				Driver driver = dservice.getDriver(driverId);
 				
 				map.addAttribute("dname", driver.getUserName());
@@ -114,6 +118,18 @@ else {
 				map.addAttribute("dlic", driver.getLicenceNo());
 				map.addAttribute("daddr", driver.getAddress());
 				return "DriverData";
+				
+			}
+			
+			//### Delete driver ###
+			
+			@RequestMapping(value="/deletedriver" ,method=RequestMethod.GET)
+			public  String deleteDriver(Model map,HttpSession session){
+				String userName = (String) session.getAttribute("dname");
+				String password = (String) session.getAttribute("dpwd");
+				int driverId=dservice.getDriverId(userName, password);
+				dservice.deleteDriver(driverId);
+				return "login";
 				
 			}
 	

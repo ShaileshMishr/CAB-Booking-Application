@@ -9,9 +9,11 @@ public interface CustomerMethod {
 	
 	boolean  insertCustomer(Customer customer) throws CustomerException;
 	
-//	public Customer updateCustomer(Customer customer);
-//	
-//	public Customer deleteCustomer(Integer customerId);
+	// boolean updateCustomer(Customer customer);
+	
+	public Customer updateCustomer(Customer customer);
+	
+	public Customer deleteCustomer(Integer customerId);
 //	
 //	public List<Customer> getAllCustomers();
 //	

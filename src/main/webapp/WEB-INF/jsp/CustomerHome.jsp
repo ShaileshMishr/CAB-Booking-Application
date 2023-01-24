@@ -15,22 +15,20 @@
 	<div class="topnav">
 	 <a class="active" href="home">Home</a>
   <a href="getCustomer">Profile</a>
-  <a href="#about">Update</a>
-  <a href="#contact">Delete</a> 
+ <%--  <a href="update/${customer.getCustomerId()}/${customer.getUserName()}/${customer.getEmail()}/${customer.getPassword()}/${customer.getMobile()}/${customer.getAddress()}">Update</a> --%>
+  <a href="update">Update</a>
+  <a href="deletecustomer/${customer.getCustomerId()}">Delete</a> 
+  <a>Customer Page</a>
 		
+		 <!-- <b><p>Customer Page</p></b> --> 
 		<b><p style="text-align: right;">Welcome ${name}</p></b>
 		<div class="login-container">
-   <!--  <form action="/action_page.php">
-      <input type="text" placeholder="Username" name="username">
-      <input type="text" placeholder="Password" name="psw">
-      <button type="submit">Login</button>
-    </form> -->
+  
   </div>
 </div>
-<h1>${customerId}</h1>
-<h1>${name}</h1>
+
 	
-	<h1 style="text-align: center;">Customer Page</h1>
+	<!-- <h1 style="text-align: center;">Customer Page</h1> -->
 
 </body>
 </html>

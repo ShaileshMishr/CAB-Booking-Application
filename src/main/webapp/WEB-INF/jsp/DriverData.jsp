@@ -21,7 +21,7 @@
     <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="Card image" style="width:100%">
     <div class="card-body">
       <h3 class="card-title">${dname}</h3>
-      <p class="card-text"><b>Driver ID:</b> ${drid}</p>
+      <p class="card-text"><b>Driver ID:</b> ${dId}</p>
       <p class="card-text"><b>Driver Name:</b> ${dname}</p>
       <p class="card-text"><b>Driver Email:</b> ${demail}</p>
       <p class="card-text"><b>Driver Mobile:</b> ${dmob}</p>
@@ -30,9 +30,9 @@
       
       
       <div>
-      <a href="driverdelete" class="btn btn-danger">Delete Account</a> 
-       <a href="driverhome" class="btn btn-info">Driver Home</a>
-       <a href="driverupdate" class="btn btn-success">Update Account</a> 
+      <a href="deletedriver" class="btn btn-danger">Delete Account</a> 
+      
+       <a href="updatedriver" class="btn btn-success">Update Account</a> 
       
       </div>
      

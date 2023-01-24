@@ -10,6 +10,8 @@ import com.capstone.cab.model.Customer;
 
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
+	//boolean updateCustomer(Customer customer);
+
 
 
 }

@@ -20,15 +20,15 @@
     <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="Card image" style="width:100%">
     <div class="card-body">
       <h3 class="card-title">${aname}</h3>
-      <p class="card-text"><b>Admin ID:</b> ${aid}</p>
+      <p class="card-text"><b>Admin ID:</b> ${aId}</p>
       <p class="card-text"><b>Admin Name:</b> ${aname}</p>
       <p class="card-text"><b>Admin Email:</b> ${aemail}</p>
       <p class="card-text"><b>Admin Mobile:</b> ${amob}</p>
       <p class="card-text"><b>Admin Address:</b> ${aaddr}</p>
       
       <div>
-      <a href="admindelete" class="btn btn-danger">Delete Account</a> 
-       <a href="adminhome" class="btn btn-info">Admin Home</a>
+      <a href="deleteadmin" class="btn btn-danger">Delete Account</a> 
+      
        <a href="updateadmin" class="btn btn-success">Update Account</a> 
       
       </div>

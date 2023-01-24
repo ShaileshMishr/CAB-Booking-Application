@@ -13,8 +13,9 @@
 	<div class="topnav">
   <a class="active" href="home">Home</a>
   <a href="getAdmin">Profile</a>
-  <a href="#about">Update</a>
-  <a href="#contact">Delete</a>
+  <a href="updateadmin">Update</a>
+  <a href="deleteadmin">Delete</a>
+   <a>Admin Page</a>
   <b><p style="text-align: right;">Welcome ${aname}</p></b>
   <div class="login-container">
    
@@ -22,6 +23,7 @@
 </div>
 	 
 	<h1 style="text-align: center;">Admin Page</h1>
+	
 	  
 </body>
 </html>

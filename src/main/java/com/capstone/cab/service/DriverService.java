@@ -47,4 +47,12 @@ public List<Driver> getDrivers(){
 		public Driver getDriver(int driverId) {
 			return drirepo.findById(driverId).get();
 		}
+		
+		//### DELETE Driver ###
+		
+		public void deleteDriver(int driverId) {
+			drirepo.deleteById(driverId);
+			
+		}
+		
 }
