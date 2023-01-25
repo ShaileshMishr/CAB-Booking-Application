@@ -17,18 +17,52 @@
   <a href="getCustomer">Profile</a>
  <%--  <a href="update/${customer.getCustomerId()}/${customer.getUserName()}/${customer.getEmail()}/${customer.getPassword()}/${customer.getMobile()}/${customer.getAddress()}">Update</a> --%>
   <a href="update">Update</a>
-  <a href="deletecustomer/${customer.getCustomerId()}">Delete</a> 
-  <a>Customer Page</a>
-		
-		 <!-- <b><p>Customer Page</p></b> --> 
+    <a href="addTrip">Book Ride</a>
+  <a href="deletecustomer/${customer.getCustomerId()}">Delete</a> 	
+		 
 		<b><p style="text-align: right;">Welcome ${name}</p></b>
-		<div class="login-container">
+		
+</div>
+<h1 style="text-align: center;">Customer Page</h1>
   
-  </div>
+  <div class="container">
+    <div class="row gy-4">
+        <div class="col-sm" style="text-align: center;">
+            <div class="card h-100">
+                <img src="https://i.ibb.co/TLxMHWw/min.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">Mini</h3>
+                    <h3>price: 15Rs/km /-</h3>
+                <a href="addTrip"><button type="button" class="btn btn-success">Book Ride</button></a>
+                  
+                </div>
+            </div>
+          
+        </div>
+        <div class="col-sm" style="text-align: center;">
+            <div class="card h-100">
+                <img src="https://i.ibb.co/svZsqNB/image1.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">Sedan</h3>
+                     <h3>price: 20Rs/km /-</h3>
+               <a href="addTrip"><button type="button" class="btn btn-success">Book Ride</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm" style="text-align: center;">
+            <div class="card h-100">
+                <img src="https://i.ibb.co/4fHYKCq/su.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">SUV</h3>
+                     <h3>price: 25Rs/km /-</h3>
+ 			<a href="addTrip"><button type="button" class="btn btn-success">Book Ride</button></a>                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 	
-	<!-- <h1 style="text-align: center;">Customer Page</h1> -->
+	
 
 </body>
 </html>
@@ -36,6 +70,16 @@
 <style>
 * {
 	box-sizing: border-box;
+}
+
+.card{
+    box-shadow: 0 0 5px 0 rgba(22, 22, 26, .25);
+}
+.col-sm{
+    margin-bottom: 1em;
+}
+.card{
+  height: 100%; 
 }
 
 /* Style the navbar */

@@ -1,5 +1,7 @@
 package com.capstone.cab.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Customer;
 import com.capstone.cab.service.AdminService;
+import com.capstone.cab.service.CustomerService;
 import com.capstone.cab.service.LoginService;
 
 @Controller
@@ -25,6 +29,9 @@ public class AdminController {
 	
 	@Autowired
 	AdminService aservice;
+	
+	@Autowired
+	CustomerService cservice;
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView displayHello() {
@@ -41,6 +48,20 @@ public class AdminController {
 		//map.addAttribute("message", "LOGIN PAGE!");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/allCustomer", method = RequestMethod.GET)
+	public ModelAndView displayCustomer(HttpSession session) {
+		String userName = (String) session.getAttribute("aname");
+		String password = (String) session.getAttribute("apwd");
+		int adminId=aservice.getAdminId(userName, password);
+		
+		ModelAndView mav = new ModelAndView("AllCustomer");
+		List<Customer> customers= cservice.getCustomers();
+		mav.addObject("allCustomers", customers);
+
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("admin") Admin admin, HttpSession session) {
@@ -95,7 +116,7 @@ else {
 			
 			aservice.save(admin);
 			map.addAttribute("userText", "Admin data saved Successfully");
-			return "sucess";
+			return "login";
 			
 		}
 	

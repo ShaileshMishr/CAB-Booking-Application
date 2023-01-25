@@ -97,7 +97,7 @@ else {
 				
 				dservice.save(driver);
 				map.addAttribute("userText", "Driver data saved Successfully");
-				return "sucess";
+				return "login";
 				
 			}
 			
@@ -108,7 +108,7 @@ else {
 				String userName = (String) session.getAttribute("dname");
 				String password = (String) session.getAttribute("dpwd");
 				int driverId=dservice.getDriverId(userName, password);
-				//int driverId = 201;
+				
 				Driver driver = dservice.getDriver(driverId);
 				
 				map.addAttribute("dname", driver.getUserName());

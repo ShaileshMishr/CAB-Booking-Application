@@ -37,6 +37,8 @@ public class Driver extends AbstractUser{
 	private Integer driverId;
 	
 	
+	 private boolean available = true;
+	 
 	@Column(nullable = true)
 	private Float rating;
 	
@@ -50,5 +52,8 @@ public class Driver extends AbstractUser{
 
 	@OneToOne(cascade = CascadeType.ALL ,orphanRemoval = true)
 	private Cab cab;
+
+
+
 
 }

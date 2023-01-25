@@ -36,7 +36,7 @@ public class Cab {
 	@NotNull(message = "Per Kilometer rate can not be null or empty")
 	private float perKmRate;
 	
-	//@JsonIgnore
+	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "cab" )
 	private Driver diver;
 

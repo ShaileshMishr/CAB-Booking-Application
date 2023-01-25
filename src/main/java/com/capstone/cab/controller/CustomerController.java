@@ -124,7 +124,7 @@ public class CustomerController {
 
 		cservice.insertCustomer(customer);
 		map.addAttribute("userText", "Customer data saved Successfully");
-		return "sucess";
+		return "login";
 
 	}
 
@@ -196,21 +196,21 @@ public class CustomerController {
 		map.addAttribute("mob", customer.getMobile());
 		map.addAttribute("add", customer.getAddress());
 
-		
-		  Customer customer1 = new Customer(); //String
-		//  customerId=request.getParameter("customerId"); 
-		  String name=request.getParameter("name");
-		  String email= request.getParameter("email");
-		  String mobile= request.getParameter("mob"); 
-		  String password1=request.getParameter("pass"); 
-		  String address= request.getParameter("add");
-		  
-		  customer1.setCustomerId(customerId); 
-		  customer1.setUserName(name);
-		  customer1.setEmail(email); 
-		  customer1.setMobile(mobile);
-		  customer1.setPassword(password1); 
-		  customer1.setAddress(address);
+//		
+//		  Customer customer1 = new Customer(); //String
+//		//  customerId=request.getParameter("customerId"); 
+//		  String name=request.getParameter("name");
+//		  String email= request.getParameter("email");
+//		  String mobile= request.getParameter("mob"); 
+//		  String password1=request.getParameter("pass"); 
+//		  String address= request.getParameter("add");
+//		  
+//		  customer1.setCustomerId(customerId); 
+//		  customer1.setUserName(name);
+//		  customer1.setEmail(email); 
+//		  customer1.setMobile(mobile);
+//		  customer1.setPassword(password1); 
+//		  customer1.setAddress(address);
 		 
 
 		return "CusUpdate";

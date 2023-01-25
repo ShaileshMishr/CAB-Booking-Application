@@ -14,12 +14,8 @@
         <h2>Status</h2>
         
         <div class="underline-title"></div>
-        <h1> **Item Added Successfully**</h1>
-       <h1>${cname}</h1>
-		<h1>${cid}</h1>
-		<h1>${cemail}</h1>
-		<h1>${cmob}</h1>
-		<h1>${caddr}</h1>
+        <h1> **Data Added Successfully**</h1>
+      
       </div>
        </div>
    </div>

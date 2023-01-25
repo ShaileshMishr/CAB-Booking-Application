@@ -15,26 +15,49 @@
   <a href="getDriver">Profile</a>
   <a href="#about">Update</a>
   <a href="deletedriver">Delete</a>
-   <a>Driver Page</a>
+   
   <b><p style="text-align: right;">Welcome ${dname}</p></b>
   
-  <div class="login-container">
-  
-  </div>
 </div>
 	 
 	<h1 style="text-align: center;">Driver Page</h1>
-	  
+	 <div class="container">
+    <div class="row gy-4">
+        <div class="col-sm" style="text-align: center;">
+            <div class="card h-100">
+                <img src="https://images01.nicepagecdn.com/page/15/71/html-template-preview-157133.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                   
+              
+                  
+                </div>
+            </div>
+          
+        </div>
+        </div>
+	
 </body>
 </html>
 
 <style>
-* {box-sizing: border-box;}
+* {box-sizing: border-box;
+/* background: url("https://images01.nicepagecdn.com/page/15/71/html-template-preview-157133.webp"); */
+}
 
 /* Style the navbar */
 .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
+}
+
+.card{
+    box-shadow: 0 0 5px 0 rgba(22, 22, 26, .25);
+}
+.col-sm{
+    margin-bottom: 1em;
+}
+.card{
+  height: 100%; 
 }
 
 /* Navbar links */
