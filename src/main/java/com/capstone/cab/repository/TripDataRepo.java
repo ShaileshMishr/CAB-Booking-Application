@@ -11,10 +11,5 @@ import com.capstone.cab.model.TripDetails;
 
 public interface TripDataRepo extends JpaRepository<TripDetails, Integer>{
 
-	public List<TripDetails> findByCarType(String carType);
-
-	public List<TripDetails> findByDate(LocalDate ld);
 	
-	
-	public List<TripDetails> getAllTripsForDays(LocalDate fromDate ,LocalDate toDate);
 }

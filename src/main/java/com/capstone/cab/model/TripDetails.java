@@ -19,8 +19,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//Cab booking entity class which stores the booking data of cabs
-//It takes customer id to book any trip;
 
 @Entity
 @Data

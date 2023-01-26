@@ -18,7 +18,6 @@ public interface TripMethod {
 	
 	public List<TripDetails> getAllTripDetailsOfACustomer(Integer customerId);
 	
-	public Invoice getInvoiceDetails(Integer customerId);
 
 	
 }

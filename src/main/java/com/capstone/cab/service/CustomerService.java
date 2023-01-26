@@ -108,10 +108,9 @@ public class CustomerService implements CustomerMethod {
 		
 		// Delete table customer
 		
-		public void deleteCabList(int customerId) {
-		 cusrepo.deleteById(customerId);
-			
-}
+//		public void deleteCabList(int customerId) {
+//		 cusrepo.deleteById(customerId);
+			//}
 
 		
 }
