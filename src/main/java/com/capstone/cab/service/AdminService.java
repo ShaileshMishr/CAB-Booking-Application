@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Driver;
 import com.capstone.cab.repository.AdminRepo;
 
 @Service
@@ -55,4 +56,15 @@ public List<Admin> getAdmins(){
 				
 			}
 	
+			//### Update Admin ###
+
+			
+			public boolean saveAdmins1(Admin adm) {
+				Admin c1 = admrepo.save(adm);
+				if(c1 != null)
+					return true;
+				else {
+					return false;
+				}
+			}
 }

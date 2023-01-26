@@ -1,5 +1,6 @@
 package com.capstone.cab.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +23,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.capstone.cab.exceptions.BookingException;
 import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
+import com.capstone.cab.model.TripDetailDTO;
+import com.capstone.cab.repository.CabRepo;
 import com.capstone.cab.repository.CustomerRepo;
 import com.capstone.cab.service.CustomerService;
 import com.capstone.cab.service.LoginService;
+import com.capstone.cab.service.TripService;
 
 @Controller
 public class CustomerController {
@@ -37,6 +42,12 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService cservice;
+	
+	@Autowired
+	private TripService ticketService;
+	
+	@Autowired
+	CabRepo cabrepo;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView Home() {
@@ -159,76 +170,98 @@ public class CustomerController {
 
 	}
 
-//	//### Update Existing customer ###
-//	
-//	@RequestMapping(value="update/{customerId}/{name}/{email}/{pass}/{mob}/{add}" ,method=RequestMethod.GET)
-//	public  String updateCustomer(Model map,@PathVariable("customerId") Integer customerId,@PathVariable("name") String name,
-//			@PathVariable("email") String email,@PathVariable("pass") String pass,
-//			@PathVariable("mob") String mob,@PathVariable("add") String add,HttpSession session){
-//		String userName = (String) session.getAttribute("uname");
-//		String password = (String) session.getAttribute("pwd");
-//		//int customerId=cservice.getCustomerId(userName, password);
-//		// cservice.updateCustomer(customer);
-//		map.addAttribute("customerId",customerId);
-//		map.addAttribute("name",name);
-//		map.addAttribute("email",email);
-//		map.addAttribute("pass",pass);
-//		map.addAttribute("mob",mob);
-//		map.addAttribute("add",add);
-//		
-//		return "CusUpdate";
-//		
-//	}
 
-	// ### Update Existing customer ###
 
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateCustomer(Model map, HttpServletRequest request, HttpSession session) {
+	//### Update Existing customer ###
+    @RequestMapping(value = "/updateCustomer", method = RequestMethod.GET)
+    public String updateCustomer(Model map, HttpServletRequest request, HttpSession session) {
+        String userName = (String) session.getAttribute("uname");
+        String password = (String) session.getAttribute("pwd");
+        int customerId = cservice.getCustomerId(userName, password);
+        Customer customer = cservice.getCustomer(customerId);
+        map.addAttribute("customerId", customer.getCustomerId());
+        map.addAttribute("userName", customer.getUserName());
+        map.addAttribute("email", customer.getEmail());
+        map.addAttribute("password", customer.getPassword());
+        map.addAttribute("mobile", customer.getMobile());
+        map.addAttribute("address", customer.getAddress());
+
+
+
+        return "CusUpdate";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateProduct(ModelMap map, @ModelAttribute("customer") Customer customer, HttpSession session) {
+        String userName = (String) session.getAttribute("uname");
+        String password = (String) session.getAttribute("pwd");
+        int customerId = cservice.getCustomerId(userName, password);
+
+        Customer customerToUpdate = cservice.getCustomer(customerId);
+        customerToUpdate.setUserName(customer.getUserName());
+        customerToUpdate.setEmail(customer.getEmail());
+        customerToUpdate.setPassword(customer.getPassword());
+        customerToUpdate.setAddress(customer.getAddress());
+        customerToUpdate.setMobile(customer.getMobile());
+
+        if(cservice.saveCustomers1(customerToUpdate)) {
+            map.addAttribute("updatemsg", "Profile Updated Successfully!!");
+        } else {
+            map.addAttribute("updatemsg", "Profile Updation Failed!!");
+        }
+        map.addAttribute("name", userName);
+        map.addAttribute("customerId", customerId);
+        return "login";
+    }
+
+	
+	
+	@RequestMapping(value = "/bookRide", method = RequestMethod.GET)
+	public ModelAndView bookRide(Model map,HttpSession session) {
+		
 		String userName = (String) session.getAttribute("uname");
 		String password = (String) session.getAttribute("pwd");
 		int customerId = cservice.getCustomerId(userName, password);
-		Customer customer = cservice.getCustomer(customerId);
-
-		map.addAttribute("customerId", customer.getCustomerId());
-		map.addAttribute("name", customer.getUserName());
-		map.addAttribute("email", customer.getEmail());
-		map.addAttribute("pass", customer.getPassword());
-		map.addAttribute("mob", customer.getMobile());
-		map.addAttribute("add", customer.getAddress());
-
-//		
-//		  Customer customer1 = new Customer(); //String
-//		//  customerId=request.getParameter("customerId"); 
-//		  String name=request.getParameter("name");
-//		  String email= request.getParameter("email");
-//		  String mobile= request.getParameter("mob"); 
-//		  String password1=request.getParameter("pass"); 
-//		  String address= request.getParameter("add");
-//		  
-//		  customer1.setCustomerId(customerId); 
-//		  customer1.setUserName(name);
-//		  customer1.setEmail(email); 
-//		  customer1.setMobile(mobile);
-//		  customer1.setPassword(password1); 
-//		  customer1.setAddress(address);
-		 
-
-		return "CusUpdate";
-
+		
+		ModelAndView mav = new ModelAndView("TripBook");
+		return mav;
 	}
+	
+	// ### AddTrip ###
 
-	@RequestMapping(value = "/updateCustomer", method = RequestMethod.POST)
-	public String updateProduct(ModelMap map, @ModelAttribute("customer") Customer customer, HttpSession session) {
+		@RequestMapping(value = "/addTrip", method = RequestMethod.POST)
+		public String save(@RequestParam int cabId,Model map, HttpServletRequest request,HttpSession session) throws BookingException {
+			
+			String userName = (String) session.getAttribute("uname");
+			String password = (String) session.getAttribute("pwd");
+			int customerId = cservice.getCustomerId(userName, password);
+			
+			Cab cab =cabrepo.findById(cabId).get(); 
+			TripDetailDTO tripdetails = new TripDetailDTO();
+			
+			String sloc = request.getParameter("sloc");
+			String destination = request.getParameter("destination");
+			String mobile = request.getParameter("mobile");
+			LocalDate fromdate = LocalDate.parse(request.getParameter("fromdate"));
+			LocalDate todate = LocalDate.parse(request.getParameter("todate"));
+			Integer customerId1=Integer. parseInt(request.getParameter("customerId"));
+			
+			tripdetails.setStartingLocation(sloc);
+			tripdetails.setDestination(destination);
+			tripdetails.setMobileNumber(mobile);
+			tripdetails.setFromDate(fromdate);
+			tripdetails.setToDate(todate);
+			tripdetails.setCustomerId(customerId1);
+			
+			cabrepo.save(cab);
+			ticketService.insertTicketDetails(tripdetails);
+			
+			map.addAttribute("ride", "Ride Booked Successfully");
+			return "sucess";
+			
+		}
 
-		String userName = (String) session.getAttribute("uname");
-		String password = (String) session.getAttribute("pwd");
-		int customerId = cservice.getCustomerId(userName, password);
 
-		cservice.updateCustomer(customer);
 
-		map.addAttribute("updatemsg", "Profile Updated Successfully!!");
-		return "CustomerHome";
-
-	}
 
 }

@@ -30,7 +30,7 @@
       <div>
       <a href="deletecustomer" class="btn btn-danger">Delete Account</a> 
       
-       <a href="update/${customer.getCustomerId()}/${customer.getUserName()}/${customer.getEmail()}/${customer.getPassword()}/${customer.getMobile()}/${customer.getAddress()}"" class="btn btn-success">Update Account</a> 
+       <a href="updateCustomer" class="btn btn-success">Update Account</a> 
       
       </div>
      

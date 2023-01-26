@@ -15,46 +15,43 @@
 			
 			<h2>Driver Update Form</h2><br>
 			
-		
-		</div>
-		<div class="sub-cont">
-			<div class="img">
-			
-			</div>
-			<div class="form sign-up">
-				<h2>Update</h2><br>
 				
-				<form id="signupform" action="updatedriver" method="post">
+				<form id="signupform" action="updatedri" method="post">
 				<label>
 					<span>Driver ID</span>
-					<input type="text" value="${driverId}" name="id" readonly>
+					<input type="text" value="${driverId}" name="driverid" readonly>
 				</label>
 				<label>
 					<span>Driver Name</span>
-					<input type="text" value="${dname}" name="name" required>
+					<input type="text" value="${userName}" name="UserName" required>
 				</label>
 				<label>
 					<span>Email</span>
-					<input type="email" value="${demail}" name="email" required>
+					<input type="email" value="${email}" name="email" required>
 				</label>
 				<label>
 					<span>Password</span>
-					<input type="password" value="${dpass}" name="pass" required>
+					<input type="password" value="${password}" name="password" required>
 				</label>
 				<label>
 					<span>Mobile</span>
-					<input type="text" name="mob" value="${dmob}" required>
+					<input type="text" name="mobile" value="${mobile}" required>
 				</label>
 				<label>
 					<span>Address</span>
-					<input type="text" name="add" value="${dadd}" required>
+					<input type="text" name="address" value="${address}" required>
 				</label>
 				<button type="submit" class="submit">Update Now</button>
 			</form>
 				<h3>${updateMsg}</h3>
 			</div>
+			 <div class="sub-cont">
+			<div class="img">
+			
+				
+			</div>
+		</div> 
 		</div>
-	</div>
 
 </body>
 </html>

@@ -16,8 +16,8 @@
 	 <a class="active" href="home">Home</a>
   <a href="getCustomer">Profile</a>
  <%--  <a href="update/${customer.getCustomerId()}/${customer.getUserName()}/${customer.getEmail()}/${customer.getPassword()}/${customer.getMobile()}/${customer.getAddress()}">Update</a> --%>
-  <a href="update">Update</a>
-    <a href="addTrip">Book Ride</a>
+  <a href="updateCustomer">Update</a>
+    <a href="bookRide">Book Ride</a>
   <a href="deletecustomer/${customer.getCustomerId()}">Delete</a> 	
 		 
 		<b><p style="text-align: right;">Welcome ${name}</p></b>
@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <h3 class="card-title fw-bold">Mini</h3>
                     <h3>price: 15Rs/km /-</h3>
-                <a href="addTrip"><button type="button" class="btn btn-success">Book Ride</button></a>
+                <a href="bookRide"><button type="button" class="btn btn-success">Book Ride</button></a>
                   
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="card-body">
                     <h3 class="card-title fw-bold">Sedan</h3>
                      <h3>price: 20Rs/km /-</h3>
-               <a href="addTrip"><button type="button" class="btn btn-success">Book Ride</button></a>
+               <a href="bookRide"><button type="button" class="btn btn-success">Book Ride</button></a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <h3 class="card-title fw-bold">SUV</h3>
                      <h3>price: 25Rs/km /-</h3>
- 			<a href="addTrip"><button type="button" class="btn btn-success">Book Ride</button></a>                </div>
+ 			<a href="bookRide"><button type="button" class="btn btn-success">Book Ride</button></a>                </div>
             </div>
         </div>
     </div>

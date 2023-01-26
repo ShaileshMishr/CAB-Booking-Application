@@ -5,16 +5,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
- 
+
 </head>
-  
+
 <body>
 	 
 	<div class="topnav">
    <a class="active" href="home">Home</a>
   <a href="getDriver">Profile</a>
-  <a href="#about">Update</a>
+  <a href="updateDriver">Update</a>
   <a href="deletedriver">Delete</a>
+   <a href="rate">View Best Driver</a>
    
   <b><p style="text-align: right;">Welcome ${dname}</p></b>
   

@@ -32,7 +32,7 @@
       <div>
       <a href="deletedriver" class="btn btn-danger">Delete Account</a> 
       
-       <a href="updatedriver" class="btn btn-success">Update Account</a> 
+       <a href="updateDriver" class="btn btn-success">Update Account</a> 
       
       </div>
      

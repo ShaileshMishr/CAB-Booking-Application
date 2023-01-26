@@ -18,10 +18,10 @@
 			
 			<form id="signupform" action="addTrip" method="post">
 				
-			<labe>
+			<label>
 				
 					<span >Customer ID</span>
-					<input type="text" name="customerId">
+					<input type="text" value="${customerId}" name="customerId">
 				</label> 
 				
 				<label>
@@ -38,11 +38,11 @@
 					<input type="text" name="mobile" required>
 				</label>
 				<label>
-					<span>FromDate</span>
+					<span>From Date</span>
 					<input type="text" name="fromdate" required>
 				</label>
 				<label>
-					<span>ToDate</span>
+					<span>To Date</span>
 					<input type="text" name="todate"  required>
 				</label>
 				

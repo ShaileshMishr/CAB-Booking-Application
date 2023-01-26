@@ -15,6 +15,6 @@ public interface TripDataRepo extends JpaRepository<TripDetails, Integer>{
 
 	public List<TripDetails> findByDate(LocalDate ld);
 	
-	@Query("select t from TripDetails t where t.date between ?1 and ?2 ")
+	
 	public List<TripDetails> getAllTripsForDays(LocalDate fromDate ,LocalDate toDate);
 }

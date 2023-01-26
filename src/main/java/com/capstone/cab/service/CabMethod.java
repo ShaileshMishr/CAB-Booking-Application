@@ -9,6 +9,8 @@ import com.capstone.cab.model.Cab;
 
 	public Cab insertCab(Cab cab);
 	
+	List<Cab> findById(List<Integer> cabId);
+	
 	public Cab updateCab(Cab cab);
 	
 	public  Cab deleteCab(Integer cabId);

@@ -1,5 +1,7 @@
 package com.capstone.cab.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
 import com.capstone.cab.model.Driver;
 import com.capstone.cab.service.DriverService;
@@ -133,4 +136,64 @@ else {
 				
 			}
 	
+			
+			
+			//### Update Existing Driver ###
+			
+		    @RequestMapping(value = "/updateDriver", method = RequestMethod.GET)
+		    public String updateDriver(Model map, HttpServletRequest request, HttpSession session) {
+		    	String userName = (String) session.getAttribute("dname");
+				String password = (String) session.getAttribute("dpwd");
+				int driverId=dservice.getDriverId(userName, password);
+		       
+				Driver driver = dservice.getDriver(driverId);
+		        map.addAttribute("driverId", driver.getDriverId());
+		        map.addAttribute("userName", driver.getUserName());
+		        map.addAttribute("email", driver.getEmail());
+		        map.addAttribute("password", driver.getPassword());
+		        map.addAttribute("mobile", driver.getMobile());
+		        map.addAttribute("address", driver.getAddress());
+
+
+
+		        return "DriverUpdate";
+		    }
+
+		    @RequestMapping(value = "/updatedri", method = RequestMethod.POST)
+		    public String updateDriver1(ModelMap map, @ModelAttribute("driver") Driver driver, HttpSession session) {
+		    	String userName = (String) session.getAttribute("dname");
+				String password = (String) session.getAttribute("dpwd");
+				int driverId=dservice.getDriverId(userName, password);
+
+		        Driver driverToUpdate = dservice.getDriver(driverId);
+		        driverToUpdate.setUserName(driver.getUserName());
+		        driverToUpdate.setEmail(driver.getEmail());
+		        driverToUpdate.setPassword(driver.getPassword());
+		        driverToUpdate.setAddress(driver.getAddress());
+		        driverToUpdate.setMobile(driver.getMobile());
+
+		        if(dservice.saveDrivers1(driverToUpdate)) {
+		            map.addAttribute("updatemsg", "Profile Updated Successfully!!");
+		        } else {
+		            map.addAttribute("updatemsg", "Profile Updation Failed!!");
+		        }
+		        map.addAttribute("dname", userName);
+		        map.addAttribute("driverId", driverId);
+		        return "login";
+		    }
+		    
+		    // List Via Rating
+		    
+		    @RequestMapping(value = "/rate", method = RequestMethod.GET)
+			public ModelAndView displayrate(HttpSession session) {
+		    	String userName = (String) session.getAttribute("dname");
+				String password = (String) session.getAttribute("dpwd");
+				int driverId=dservice.getDriverId(userName, password);
+				
+				ModelAndView mav = new ModelAndView("RateCab");
+				List<Driver> best= dservice.viewBestDrivers();
+				mav.addObject("allbest", best);
+
+				return mav;
+			}
 }

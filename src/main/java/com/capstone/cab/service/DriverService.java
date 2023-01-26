@@ -1,10 +1,12 @@
 package com.capstone.cab.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.cab.model.Customer;
 import com.capstone.cab.model.Driver;
 import com.capstone.cab.repository.DriverRepo;
 
@@ -55,4 +57,30 @@ public List<Driver> getDrivers(){
 			
 		}
 		
+		//### Update Driver ###
+
+		
+		public boolean saveDrivers1(Driver dri) {
+			Driver c1 = drirepo.save(dri);
+			if(c1 != null)
+				return true;
+			else {
+				return false;
+			}
+		}
+		
+		   //View Best Driver only with rating >=4.5
+	    public List<Driver> viewBestDrivers() {
+	        List<Driver> allDrivers = getDrivers();
+	        List<Driver> bestDrivers = allDrivers.stream().filter(driver -> {
+	                            if (driver.isAvailable() && driver.getRating() != null && Float.compare(driver.getRating(), 4.5f) >= 0) {
+	                                return true;
+	                            }
+	                            return false;
+	                        }
+	                ).
+	                collect(Collectors.toList());
+	        return bestDrivers;
+	    }
+	
 }

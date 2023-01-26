@@ -90,22 +90,28 @@ public class CustomerService implements CustomerMethod {
 		
 		//UPDATE CUSTOMER
 		
+		public boolean saveCustomers1(Customer cust) {
+			Customer c1 = cusrepo.save(cust);
+			if(c1 != null)
+				return true;
+			else {
+				return false;
+			}
+		}
+
+		
 		@Override
 		public Customer updateCustomer(Customer customer) {
-			//cusrepo.findById(customer.getCustomerId());
-			return cusrepo.save(customer);
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
+		// Delete table customer
 		
-//	public boolean updateCustomer(Customer customer) {
-//	
-//		cusrepo.findById(customerId).get();
-//		
-//		Customer c1 = cusrepo.save(customer);
-//		if(c1 != null)
-//			return true;
-//		else {
-//			return false;
-//		}
-//	}
+		public void deleteCabList(int customerId) {
+		 cusrepo.deleteById(customerId);
+			
+}
+
+		
 }

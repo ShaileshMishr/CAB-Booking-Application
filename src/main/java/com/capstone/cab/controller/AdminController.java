@@ -16,9 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.capstone.cab.exceptions.CustomerException;
 import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
+import com.capstone.cab.model.Driver;
 import com.capstone.cab.service.AdminService;
+import com.capstone.cab.service.CabService;
 import com.capstone.cab.service.CustomerService;
+import com.capstone.cab.service.DriverService;
 import com.capstone.cab.service.LoginService;
 
 @Controller
@@ -32,6 +36,12 @@ public class AdminController {
 	
 	@Autowired
 	CustomerService cservice;
+	
+	@Autowired
+	CabService cabservice;
+	
+	@Autowired
+	DriverService dservice;
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView displayHello() {
@@ -49,6 +59,8 @@ public class AdminController {
 		return mav;
 	}
 	
+	// Get All Customers
+	
 	@RequestMapping(value = "/allCustomer", method = RequestMethod.GET)
 	public ModelAndView displayCustomer(HttpSession session) {
 		String userName = (String) session.getAttribute("aname");
@@ -61,6 +73,37 @@ public class AdminController {
 
 		return mav;
 	}
+	
+	// Get All Drivers
+	
+	@RequestMapping(value = "/allDriver", method = RequestMethod.GET)
+	public ModelAndView displayDriver(HttpSession session) {
+		String userName = (String) session.getAttribute("aname");
+		String password = (String) session.getAttribute("apwd");
+		int adminId=aservice.getAdminId(userName, password);
+		
+		ModelAndView mav = new ModelAndView("AllDriver");
+		List<Driver> drivers= dservice.getDrivers();
+		mav.addObject("allDrivers", drivers);
+
+		return mav;
+	}
+	
+	// Get All Cabs
+	
+	@RequestMapping(value = "/allCab", method = RequestMethod.GET)
+	public ModelAndView displayCab(HttpSession session) {
+		String userName = (String) session.getAttribute("aname");
+		String password = (String) session.getAttribute("apwd");
+		int adminId=aservice.getAdminId(userName, password);
+		
+		ModelAndView mav = new ModelAndView("AllCab");
+		List<Cab> cabs= cabservice.getCabs();
+		mav.addObject("allCabs", cabs);
+
+		return mav;
+	}
+	
 	
 	
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
@@ -100,7 +143,7 @@ else {
 	//### Add New Admin ###
 	
 		@RequestMapping(value="/addtoadmin" ,method=RequestMethod.POST)
-		public String save(Model map, HttpServletRequest request) throws CustomerException {
+		public String save(Model map, HttpServletRequest request) {
 			Admin admin = new Admin();
 			String name= request.getParameter("name");
 			String email= request.getParameter("email");
@@ -151,6 +194,105 @@ else {
 			return "login";
 			
 		}
+		
+		
+		
+		//### Update Existing Driver ###
+		
+	    @RequestMapping(value = "/updateAdmin", method = RequestMethod.GET)
+	    public String updateDriver(Model map, HttpServletRequest request, HttpSession session) {
+	    	String userName = (String) session.getAttribute("aname");
+			String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
+	       
+			Admin admin = aservice.getAdmin(adminId);
+	        map.addAttribute("adminId", admin.getAdminId());
+	        map.addAttribute("userName", admin.getUserName());
+	        map.addAttribute("email", admin.getEmail());
+	        map.addAttribute("password", admin.getPassword());
+	        map.addAttribute("mobile", admin.getMobile());
+	        map.addAttribute("address", admin.getAddress());
+
+
+
+	        return "AdminUpdate";
+	    }
+
+	    @RequestMapping(value = "/updateadm", method = RequestMethod.POST)
+	    public String updateAdmin1(ModelMap map, @ModelAttribute("admin") Admin admin, HttpSession session) {
+	    	String userName = (String) session.getAttribute("aname");
+			String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
+
+	        Admin adminToUpdate = aservice.getAdmin(adminId);
+	        adminToUpdate.setUserName(admin.getUserName());
+	        adminToUpdate.setEmail(admin.getEmail());
+	        adminToUpdate.setPassword(admin.getPassword());
+	        adminToUpdate.setAddress(admin.getAddress());
+	        adminToUpdate.setMobile(admin.getMobile());
+
+	        if(aservice.saveAdmins1(adminToUpdate)) {
+	            map.addAttribute("updatemsg", "Profile Updated Successfully!!");
+	        } else {
+	            map.addAttribute("updatemsg", "Profile Updation Failed!!");
+	        }
+	        map.addAttribute("aname", userName);
+	        map.addAttribute("adminId", adminId);
+	        return "login";
+	    }
+	    
+		
+		//## Insert Cab ##
+		
+
+		@RequestMapping(value = "/insertCab", method = RequestMethod.GET)
+		public ModelAndView bookRide(Model map,HttpSession session) {
+			
+			String userName = (String) session.getAttribute("uname");
+			String password = (String) session.getAttribute("pwd");
+			int customerId = cservice.getCustomerId(userName, password);
+			
+			ModelAndView mav = new ModelAndView("CabData");
+			return mav;
+		}
+	    
+	    
+		// Add Cab
+		@RequestMapping(value="/addtocab" ,method=RequestMethod.POST)
+		public String insertcab(Model map, HttpServletRequest request, HttpSession session) {
+			String userName = (String) session.getAttribute("aname");
+		String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
+			
+			Cab cab =  new Cab();
+			
+			String type= request.getParameter("type");
+			int rate=  Integer.parseInt(request.getParameter("rate"));
+			
+			cab.setCarType(type);
+			cab.setPerKmRate(rate);
+			//cab.setDiver(null);
+			
+			
+			cabservice.insertCab(cab);
+			map.addAttribute("userText", "Cab data saved Successfully");
+			return "AdminHome";
+			
+		}
+		
+		// Delete All Cab
+		
+//		@RequestMapping(value="/deletecablist/{customerId}" ,method=RequestMethod.GET)
+//		public  String deleteCablist(Model map,HttpSession session){
+//
+//			
+//			//int customerId = cservice.getCustomerId(userName, password);
+//			Customer customer = cservice.get;
+//	        map.addAttribute("customerId", customer.getCustomerId());
+//			  cservice.deleteCabList(customerId);
+//			return "login";
+//			
+//		}
 		
 		
 }

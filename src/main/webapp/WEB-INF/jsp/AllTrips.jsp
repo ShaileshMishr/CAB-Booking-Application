@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <h2>Customer List</h2>
+ <h2>Trip List</h2>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -20,7 +20,6 @@
        <th scope="col">Password</th>
         <th scope="col">UserName</th>
          <th scope="col">Action</th>
-          <th scope="col">Action</th>
     </tr>
   </thead>
 		
@@ -33,8 +32,7 @@
 					<td><c:out value="${customer.mobile}"/></td>
 					<td><c:out value="${customer.password}"/></td>
 					<td><c:out value="${customer.userName}"/></td>
-					<td><a href="deletecustomer">Delete</a></td>
-					<td><a href="updateCustomer">Update</a></td>
+					<td><a href="#">Delete</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>

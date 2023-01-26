@@ -29,7 +29,7 @@
       <div>
       <a href="deleteadmin" class="btn btn-danger">Delete Account</a> 
       
-       <a href="updateadmin" class="btn btn-success">Update Account</a> 
+       <a href="updateAdmin" class="btn btn-success">Update Account</a> 
       
       </div>
      

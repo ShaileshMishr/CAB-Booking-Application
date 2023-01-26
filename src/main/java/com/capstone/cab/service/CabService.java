@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capstone.cab.model.Cab;
+import com.capstone.cab.model.Customer;
 import com.capstone.cab.repository.CabRepo;
 
 
@@ -16,8 +17,19 @@ import com.capstone.cab.repository.CabRepo;
 public class CabService implements CabMethod{
 	
 	@Autowired
-	private CabRepo cabRepo;
+	CabRepo cabRepo;
 
+	public List<Cab> getCabs(){
+		
+		List<Cab> cab = (List<Cab>)cabRepo.findAll();
+		return cab;
+	}
+	
+	public void saveCabs(Customer cust) {
+		cabRepo.save(cust);
+	}
+	
+	
 	// Insert Cab
 	@Override
 	public Cab insertCab(Cab cab) {
@@ -74,6 +86,12 @@ Optional<Cab> opt= cabRepo.findById(cabId);
 
 		int count = cabRepo.getcount(carType);
 		return count;
+	}
+
+	@Override
+	public List<Cab> findById(List<Integer> cabId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

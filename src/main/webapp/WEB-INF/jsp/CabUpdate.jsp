@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-    
+
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Customer Update</title>
+	<title>CAB Update</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 <style><%@include file="loginstyle.css"%></style>
@@ -14,15 +14,16 @@
 	<div class="cont">
 		<div class="form sign-in">
 			
-			<h2>Customer Update Form</h2><br>
+			<h2>Admin Update Form</h2><br>
 			
-			<form id="signupform" action="update" method="post">
-				<label style="color:red;">
-					<span >Customer ID</span>
-					<input type="text" value="${customerId}" name="customerId" readonly>
+				
+				<form id="signupform" action="updateadm" method="post">
+				<label>
+					<span>Admin ID</span>
+					<input type="text" value="${adminId}" name="adminid" readonly>
 				</label>
 				<label>
-					<span>Customer Name</span>
+					<span>Admin Name</span>
 					<input type="text" value="${userName}" name="userName" required>
 				</label>
 				<label>
@@ -43,17 +44,15 @@
 				</label>
 				<button type="submit" class="submit">Update Now</button>
 			</form>
-		
-		</div>
-		 <div class="sub-cont">
+					<h3>${updateMsg}</h3>
+			</div>
+			 <div class="sub-cont">
 			<div class="img">
 			
 				
 			</div>
 		</div> 
-		
-		<h3 style="color:red">${updateMsg}</h3>
-	</div>
+		</div>
 
 </body>
 </html>

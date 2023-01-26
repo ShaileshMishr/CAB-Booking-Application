@@ -45,13 +45,18 @@ public class Driver extends AbstractUser{
 	private String licenceNo;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cabdriver", orphanRemoval = true)
-	private List<TripDetails> tripList = new ArrayList<>();
+	
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabdriver", orphanRemoval =
+	  true) private List<TripDetails> tripList = new ArrayList<>();
+	 
 	
 	
 
-	@OneToOne(cascade = CascadeType.ALL ,orphanRemoval = true)
-	private Cab cab;
+	
+	  @OneToOne(cascade = CascadeType.ALL ,orphanRemoval = true) private Cab cab;
+	 
+	
+	
 
 
 

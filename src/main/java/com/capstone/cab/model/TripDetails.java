@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -57,11 +58,12 @@ public class TripDetails {
 	
 	private String carType;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Customer customer;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Driver cabdriver;
+	  @OneToOne(cascade = CascadeType.ALL) private Customer customer;
+	  
+	  @ManyToOne(cascade = CascadeType.ALL) private Driver cabdriver;
+	 
 	
-
+	//private Integer driverId;
+	
 }

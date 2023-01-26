@@ -5,26 +5,26 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
- 
+
 </head>
-  
+
 <body>
 	 
 	<div class="topnav">
   <a class="active" href="home">Home</a>
   <a href="getAdmin">Profile</a>
-  <a href="updateadmin">Update</a>
+  <a href="updateAdmin">Update</a>
   <a href="deleteadmin">Delete</a>
   
   <b><p style="text-align: right;">Welcome ${aname}</p></b>
 
 </div>
-<h1 style="text-align: center;">Driver Page</h1>
+<h1 style="text-align: center;">Admin Page</h1>
 	  <div class="container">
     <div class="row gy-4">
         <div class="col-sm" style="text-align: center;">
             <div class="card h-100">
-                <img src="https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-customer-service-avatar-image_1288891.jpg" class="card-img-top" alt="...">
+                <img src="https://us.123rf.com/450wm/yupiramos/yupiramos2004/yupiramos200421804/yupiramos200421804.jpg?ver=6" class="card-img-top" alt="..." style="">
                 <div class="card-body">
                     <h3 class="card-title fw-bold">Customer</h3>
                   
@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <h3 class="card-title fw-bold">Driver</h3>
                     
-               <a href=""><button type="button" class="btn btn-success">Driver List</button></a>
+               <a href="allDriver"><button type="button" class="btn btn-success">Driver List</button></a>
                 </div>
             </div>
         </div>
@@ -50,16 +50,19 @@
                 <div class="card-body">
                     <h3 class="card-title fw-bold">CAB</h3>
                     
- 			<a href=""><button type="button" class="btn btn-success">CAB List</button></a>                </div>
+ 			<a href="allCab"><button type="button" class="btn btn-success">CAB List</button></a> 
+ 			<a href="insertCab"><button type="button" class="btn btn-success">ADD CAB</button></a>    
+ 			
+ 			           </div>
             </div>
         </div>
           <div class="col-sm" style="text-align: center;">
             <div class="card h-100">
-                <img src="https://www.shutterstock.com/shutterstock/videos/1092765535/thumb/1.jpg?ip=x480" class="card-img-top" alt="...">
+                <img src="https://www.shutterstock.com/shutterstock/videos/1092765535/thumb/1.jpg?ip=x480" class="card-img-top" alt="" >
                 <div class="card-body">
                     <h3 class="card-title fw-bold">Trip Details</h3>
                     
- 			<a href=""><button type="button" class="btn btn-success">Trip List</button></a>                </div>
+ 			<a href="allTrip"><button type="button" class="btn btn-success">Trip List</button></a>                </div>
             </div>
         </div>
     </div>

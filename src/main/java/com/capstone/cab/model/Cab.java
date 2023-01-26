@@ -34,10 +34,12 @@ public class Cab {
 	private String carType;
 	
 	@NotNull(message = "Per Kilometer rate can not be null or empty")
-	private float perKmRate;
+	private int perKmRate;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "cab" )
-	private Driver diver;
+	
+	  @OneToOne(cascade = CascadeType.ALL, mappedBy = "cab" ) private Driver diver;
+	 
 
+	//private Integer driverId;
 }

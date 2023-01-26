@@ -16,46 +16,43 @@
 			
 			<h2>Admin Update Form</h2><br>
 			
-		
-		</div>
-		<div class="sub-cont">
-			<div class="img">
-			
-			</div>
-			<div class="form sign-up">
-				<h2>Update</h2><br>
 				
-				<form id="signupform" action="updateadmin" method="post">
+				<form id="signupform" action="updateadm" method="post">
 				<label>
 					<span>Admin ID</span>
-					<input type="text" value="${adminId}" name="id" readonly>
+					<input type="text" value="${adminId}" name="adminid" readonly>
 				</label>
 				<label>
 					<span>Admin Name</span>
-					<input type="text" value="${aname}" name="name" required>
+					<input type="text" value="${userName}" name="userName" required>
 				</label>
 				<label>
 					<span>Email</span>
-					<input type="email" value="${aemail}" name="email" required>
+					<input type="email" value="${email}" name="email" required>
 				</label>
 				<label>
 					<span>Password</span>
-					<input type="password" value="${apass}" name="pass" required>
+					<input type="password" value="${password}" name="password" required>
 				</label>
 				<label>
 					<span>Mobile</span>
-					<input type="text" name="mob" value="${amob}" required>
+					<input type="text" name="mobile" value="${mobile}" required>
 				</label>
 				<label>
 					<span>Address</span>
-					<input type="text" name="add" value="${aadd}" required>
+					<input type="text" name="address" value="${address}" required>
 				</label>
 				<button type="submit" class="submit">Update Now</button>
 			</form>
-				<h3>${updateMsg}</h3>
+					<h3>${updateMsg}</h3>
 			</div>
+			 <div class="sub-cont">
+			<div class="img">
+			
+				
+			</div>
+		</div> 
 		</div>
-	</div>
 
 </body>
 </html>
