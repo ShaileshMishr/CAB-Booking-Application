@@ -31,13 +31,14 @@
 				<tr>
 					<td><c:out value="${tripdetails.tripBookingId}"/></td>
 					<td><c:out value="${tripdetails.customerId}"/></td>
+					<td><c:out value="${tripdetails.startingLocation}"/></td>
 					<td><c:out value="${tripdetails.destination}"/></td>
 					<td><c:out value="${tripdetails.distanceInKM}"/></td>
 					<td><c:out value="${tripdetails.fromDate}"/></td>
-					<td><c:out value="${tripdetails.startingLocation}"/></td>
+				
 					<td><c:out value="${tripdetails.toDate}"/></td>
-					<td><a href="">Update</a></td>
-					<td><a href="deletetriplist/${tripdetails.getTripBookingId()}">Delete</a></td>
+					<td><a href="updatetrip/${tripDetails.getTripBookingId()}/${tripDetails.getStartingLocation}/${tripDetails.getDestination()}/${tripDetails.getDistanceInKM}/${tripDetails.getFromDate}/${tripDetails.getToDate}">Update</a></td>
+					<td><a href="deletetrip/${tripdetails.getTripBookingId()}">Delete</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>

@@ -38,8 +38,8 @@ public class Cab {
 	
 	
 	
-	  @OneToOne(cascade = CascadeType.ALL, mappedBy = "cab" ) private Driver diver;
+//	  @OneToOne(cascade = CascadeType.ALL, mappedBy = "cab" ) private Driver diver;
 	 
 
-	//private Integer driverId;
+	private Integer driverId;
 }

@@ -1,11 +1,13 @@
 package com.capstone.cab.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
 import com.capstone.cab.model.Driver;
 import com.capstone.cab.repository.DriverRepo;
@@ -57,6 +59,23 @@ public List<Driver> getDrivers(){
 			
 		}
 		
+		// Delete from table
+		
+		public Driver deleteDriver1(Integer driverId) {
+	Optional<Driver> opt= drirepo.findById(driverId);
+			
+			if(opt.isPresent()) {
+				
+				Driver existingCab= opt.get();
+				drirepo.delete(existingCab);
+				
+				return existingCab;
+				
+			}else {
+				}
+			return null;
+		}
+		
 		//### Update Driver ###
 
 		
@@ -83,4 +102,18 @@ public List<Driver> getDrivers(){
 	        return bestDrivers;
 	    }
 	
+	    // Available Driver
+	    
+	    public List<Driver> viewAvailDrivers() {
+	        List<Driver> allDrivers = getDrivers();
+	        List<Driver> availDrivers = allDrivers.stream().filter(driver -> {
+	                            if (driver.isAvailable()) {
+	                                return true;
+	                            }
+	                            return false;
+	                        }
+	                ).
+	                collect(Collectors.toList());
+	        return availDrivers;
+	    }
 }

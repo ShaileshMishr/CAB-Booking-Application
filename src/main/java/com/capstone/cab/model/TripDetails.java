@@ -57,11 +57,13 @@ public class TripDetails {
 	private String carType;
 	
 	
-	  @OneToOne(cascade = CascadeType.ALL) private Customer customer;
-	  
-	  @ManyToOne(cascade = CascadeType.ALL) private Driver cabdriver;
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL) private Customer customer;
+	 * 
+	 * @ManyToOne(cascade = CascadeType.ALL) private Driver cabdriver;
+	 */
 	 
 	
-	//private Integer driverId;
+	private Integer customerId;
 	
 }

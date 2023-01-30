@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,11 +20,13 @@ import com.capstone.cab.model.Admin;
 import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
 import com.capstone.cab.model.Driver;
+import com.capstone.cab.model.TripDetails;
 import com.capstone.cab.service.AdminService;
 import com.capstone.cab.service.CabService;
 import com.capstone.cab.service.CustomerService;
 import com.capstone.cab.service.DriverService;
 import com.capstone.cab.service.LoginService;
+import com.capstone.cab.service.TripService;
 
 @Controller
 public class AdminController {
@@ -42,6 +45,9 @@ public class AdminController {
 	
 	@Autowired
 	DriverService dservice;
+	
+	@Autowired
+	TripService tservice;
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView displayHello() {
@@ -104,7 +110,24 @@ public class AdminController {
 		return mav;
 	}
 	
+	// Get All Trips
 	
+		@RequestMapping(value = "/allTrip", method = RequestMethod.GET)
+		public ModelAndView displayTrip(HttpSession session) {
+			String userName = (String) session.getAttribute("aname");
+			String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
+			
+			ModelAndView mav = new ModelAndView("AllTrips");
+			List<TripDetails> cabs= tservice.getTrips();
+			mav.addObject("allTrips", cabs);
+
+			return mav;
+		}
+	
+		
+		
+				
 	
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public ModelAndView displayDriver(ModelMap map, HttpServletRequest request  ,@ModelAttribute("admin") Admin admin, HttpSession session) {
@@ -191,7 +214,7 @@ else {
 			String password = (String) session.getAttribute("apwd");
 			int adminId=aservice.getAdminId(userName, password);
 			aservice.deleteAdmin(adminId);
-			return "login";
+			return "home";
 			
 		}
 		
@@ -248,51 +271,69 @@ else {
 		@RequestMapping(value = "/insertCab", method = RequestMethod.GET)
 		public ModelAndView bookRide(Model map,HttpSession session) {
 			
-			String userName = (String) session.getAttribute("uname");
-			String password = (String) session.getAttribute("pwd");
-			int customerId = cservice.getCustomerId(userName, password);
+			String userName = (String) session.getAttribute("aname");
+			String password = (String) session.getAttribute("apwd");
+			int adminId=aservice.getAdminId(userName, password);
 			
 			ModelAndView mav = new ModelAndView("CabData");
 			return mav;
 		}
 	    
-	    
-		// Add Cab
-		@RequestMapping(value="/addtocab" ,method=RequestMethod.POST)
-		public String insertcab(Model map, HttpServletRequest request, HttpSession session) {
-			String userName = (String) session.getAttribute("aname");
-		String password = (String) session.getAttribute("apwd");
-			int adminId=aservice.getAdminId(userName, password);
-			
-			Cab cab =  new Cab();
-			
-			String type= request.getParameter("type");
-			int rate=  Integer.parseInt(request.getParameter("rate"));
-			
-			cab.setCarType(type);
-			cab.setPerKmRate(rate);
-			//cab.setDiver(null);
-			
-			
-			cabservice.insertCab(cab);
-			map.addAttribute("userText", "Cab data saved Successfully");
-			return "AdminHome";
-			
-		}
+				// Add Cab
 		
-		// Delete All Cab
-		
-//		@RequestMapping(value="/deletecablist/{customerId}" ,method=RequestMethod.GET)
-//		public  String deleteCablist(Model map,HttpSession session){
-//
-//			
-//			//int customerId = cservice.getCustomerId(userName, password);
-//			Customer customer = cservice.get;
-//	        map.addAttribute("customerId", customer.getCustomerId());
-//			  cservice.deleteCabList(customerId);
-//			return "login";
-//			
-//		}
+					@RequestMapping(value="/addtocab" ,method=RequestMethod.POST)
+					public String insertcab(Model map, HttpServletRequest request, HttpSession session) {
+						String userName = (String) session.getAttribute("aname");
+					String password = (String) session.getAttribute("apwd");
+						int adminId=aservice.getAdminId(userName, password);
+						
+						Cab cab =  new Cab();
+						
+						String type= request.getParameter("type");
+						int rate=  Integer.parseInt(request.getParameter("rate"));
+						
+						cab.setCarType(type);
+						cab.setPerKmRate(rate);
+						
+						
+						
+						cabservice.insertCab(cab);
+						map.addAttribute("userText", "Cab data saved Successfully");
+						return "AdminHome";
+						
+					}
+					
+					// Delete All Cab
+					
+					@RequestMapping(value="/deletecablist/{cabId}" ,method=RequestMethod.GET)
+					public  String deleteCablist(@PathVariable("cabId") Integer cabId,Model map,HttpSession session){
+
+						String userName = (String) session.getAttribute("aname");
+						String password = (String) session.getAttribute("apwd");
+						int adminId=aservice.getAdminId(userName, password);
+						
+						Cab cab = cabservice.deleteCab(cabId);
+				        map.addAttribute("cabId", cab.getCabId());
+						  cabservice. deleteCab(cabId);
+						return "AdminHome";
+						
+					}
+					
+					// Delete All Trips
+					
+					@RequestMapping(value="/deletetriplist/{tripBookingId}" ,method=RequestMethod.GET)
+					public  String deleteTriplist(@PathVariable("tripBookingId") Integer tripBookingId,Model map,HttpSession session){
+
+						String userName = (String) session.getAttribute("aname");
+						String password = (String) session.getAttribute("apwd");
+						int adminId=aservice.getAdminId(userName, password);
+						
+						TripDetails trip = tservice.deleteTripDetails(tripBookingId);
+				        map.addAttribute("tripBookingId",trip.getTripBookingId());
+						  tservice. deleteTripDetails(tripBookingId);
+						return "AdminHome";
+						
+					}
 		
 		
 }

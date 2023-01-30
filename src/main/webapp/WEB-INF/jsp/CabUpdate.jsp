@@ -14,34 +14,23 @@
 	<div class="cont">
 		<div class="form sign-in">
 			
-			<h2>Admin Update Form</h2><br>
+			<h2>Cab Update Form</h2><br>
 			
 				
-				<form id="signupform" action="updateadm" method="post">
+				<form id="signupform" action="updatecab" method="post">
 				<label>
-					<span>Admin ID</span>
-					<input type="text" value="${adminId}" name="adminid" readonly>
+					<span>Cab ID</span>
+					<input type="text" value="${cabId}" name="cabid" readonly>
 				</label>
 				<label>
-					<span>Admin Name</span>
-					<input type="text" value="${userName}" name="userName" required>
+					<span>Car Type</span>
+					<input type="text" value="${carType}" name="carType" required>
 				</label>
 				<label>
-					<span>Email</span>
-					<input type="email" value="${email}" name="email" required>
+					<span>Rate</span>
+					<input type="text" value="${perKmRate}" name="perKmRate" required>
 				</label>
-				<label>
-					<span>Password</span>
-					<input type="password" value="${password}" name="password" required>
-				</label>
-				<label>
-					<span>Mobile</span>
-					<input type="text" name="mobile" value="${mobile}" required>
-				</label>
-				<label>
-					<span>Address</span>
-					<input type="text" name="address" value="${address}" required>
-				</label>
+				
 				<button type="submit" class="submit">Update Now</button>
 			</form>
 					<h3>${updateMsg}</h3>

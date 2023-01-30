@@ -15,7 +15,5 @@ import com.capstone.cab.model.Cab;
 	
 	public  Cab deleteCab(Integer cabId);
 	
-	public List<Cab> viewCabsOfType(String carType);
 	
-	public int countCabsOfType(String carType);
 }

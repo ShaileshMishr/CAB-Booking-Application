@@ -2,12 +2,14 @@ package com.capstone.cab.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
+import com.capstone.cab.model.Driver;
 import com.capstone.cab.repository.CabRepo;
 
 
@@ -72,21 +74,16 @@ Optional<Cab> opt= cabRepo.findById(cabId);
 	}
 
 	// View cabs by type implementation
-	@Override
-	public List<Cab> viewCabsOfType(String carType) {
-		List<Cab> cabs= cabRepo.findByCarType(carType);
-			return cabs;
-		
-	}
+//	@Override
+//	public List<Cab> viewCabsOfType(String carType) {
+//		List<Cab> cabs= cabRepo.findByCarType(carType);
+//			return cabs;
+//		
+//	}
 	
-	// Count of cabs by car type implementation
+	
 
-	@Override
-	public int countCabsOfType(String carType) {
 
-		int count = cabRepo.getcount(carType);
-		return count;
-	}
 
 	@Override
 	public List<Cab> findById(List<Integer> cabId) {
@@ -94,5 +91,17 @@ Optional<Cab> opt= cabRepo.findById(cabId);
 		return null;
 	}
 
+	
+
+	  // Cab Via Type
+//    
+//    public List<Cab> cabs() {
+//        List<Cab> allcabs = getCabs();
+//        List<Cab> typeCabs = (List<Cab>) allcabs.stream().filter(cab -> {
+//        	    cab.getCarType()
+//                ).
+//                collect(Collectors.toList());
+//        return typeCabs;
+//    }
 	
 }

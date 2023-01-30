@@ -18,6 +18,8 @@
  <%--  <a href="update/${customer.getCustomerId()}/${customer.getUserName()}/${customer.getEmail()}/${customer.getPassword()}/${customer.getMobile()}/${customer.getAddress()}">Update</a> --%>
   <a href="updateCustomer">Update</a>
     <a href="bookRide">Book Ride</a>
+     <a href="avail">Avail Cabs</a>
+     <a href="getTrip">Trips</a>
   <a href="deletecustomer/${customer.getCustomerId()}">Delete</a> 	
 		 
 		<b><p style="text-align: right;">Welcome ${name}</p></b>

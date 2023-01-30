@@ -14,7 +14,7 @@
         <h2>Status</h2>
         
         <div class="underline-title"></div>
-        <h1> **Data Added Successfully**</h1>
+        <h1> **Trip Added Successfully**</h1>
       
       </div>
        </div>

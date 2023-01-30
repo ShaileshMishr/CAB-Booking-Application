@@ -20,7 +20,7 @@
        <th scope="col">Password</th>
         <th scope="col">UserName</th>
          <th scope="col">Action</th>
-          <th scope="col">Action</th>
+          <!-- <th scope="col">Action</th> -->
     </tr>
   </thead>
 		
@@ -33,8 +33,8 @@
 					<td><c:out value="${customer.mobile}"/></td>
 					<td><c:out value="${customer.password}"/></td>
 					<td><c:out value="${customer.userName}"/></td>
-					<td><a href="deletecustomer">Delete</a></td>
-					<td><a href="updateCustomer">Update</a></td>
+					<td><a href="deletecustomerlist/${customer.getCustomerId()}">Delete</a></td>
+					<!-- <td><a href="updateCustomer">Update</a></td> -->
 				</tr>
 				</c:forEach>
 			</tbody>

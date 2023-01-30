@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ import com.capstone.cab.model.Admin;
 import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
 import com.capstone.cab.model.Driver;
+import com.capstone.cab.service.AdminService;
 import com.capstone.cab.service.DriverService;
 import com.capstone.cab.service.LoginService;
 
@@ -29,6 +31,9 @@ public class DriverController {
 	LoginService service;
 	@Autowired
 	DriverService dservice;
+	
+	@Autowired
+	AdminService aservice;
 	
 	@RequestMapping(value = "/driver", method = RequestMethod.GET)
 	public ModelAndView displayHello() {
@@ -132,7 +137,7 @@ else {
 				String password = (String) session.getAttribute("dpwd");
 				int driverId=dservice.getDriverId(userName, password);
 				dservice.deleteDriver(driverId);
-				return "login";
+				return "home";
 				
 			}
 	
@@ -196,4 +201,21 @@ else {
 
 				return mav;
 			}
+		    
+		    
+		 // Delete All Customer
+			
+ 			@RequestMapping(value="/deletedriverlist/{driverId}" ,method=RequestMethod.GET)
+ 			public  String deleteCablist(@PathVariable("driverId") Integer driverId,Model map,HttpSession session){
+
+ 				String userName = (String) session.getAttribute("aname");
+ 				String password = (String) session.getAttribute("apwd");
+ 				int adminId=aservice.getAdminId(userName, password);
+ 				
+ 				Driver dri = dservice.deleteDriver1(driverId);
+ 		        map.addAttribute("driverId", dri.getDriverId());
+ 				  dservice. deleteDriver1(driverId);
+ 				return "AdminHome";
+ 				
+ 			}
 }

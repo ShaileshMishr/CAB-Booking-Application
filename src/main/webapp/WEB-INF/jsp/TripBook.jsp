@@ -14,7 +14,7 @@
 	<div class="cont">
 		<div class="form sign-in">
 			
-			<h2>Ride Booking Form</h2><br>
+			<h2>Book Your Ride</h2><br>
 			
 			<form id="signupform" action="addTrip" method="post">
 				
@@ -34,16 +34,16 @@
 					<input type="text" name="destination" required>
 				</label>
 				<label>
-					<span>Mobile</span>
-					<input type="text" name="mobile" required>
+					<span>Distance</span>
+					<input type="text" name="distance" required>
 				</label>
 				<label>
 					<span>From Date</span>
-					<input type="text" name="fromdate" required>
+					<input type="date" name="fromdate" required>
 				</label>
 				<label>
 					<span>To Date</span>
-					<input type="text" name="todate"  required>
+					<input type="date" name="todate"  required>
 				</label>
 				
 				<button type="submit" class="submit">Book Now</button>

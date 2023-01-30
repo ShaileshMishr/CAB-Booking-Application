@@ -11,5 +11,7 @@ import com.capstone.cab.model.TripDetails;
 
 public interface TripDataRepo extends JpaRepository<TripDetails, Integer>{
 
+	void save(Integer tripBookedId);
+
 	
 }

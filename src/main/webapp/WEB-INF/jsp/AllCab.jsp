@@ -28,8 +28,8 @@
 					<td><c:out value="${cab.carType}"/></td>
 					<td><c:out value="${cab.perKmRate}"/></td>
 					
-					<td><a href="#">Delete</a></td>
-					<td><a href="#">Update</a></td>
+					<td><a href="deletecablist/${cab.getCabId()}">Delete</a></td>
+					<td><a href="update/${cab.cabId()}/${cab.carType()}/${cab.perKmRate()}">Update</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>

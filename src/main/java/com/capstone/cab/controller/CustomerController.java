@@ -1,5 +1,10 @@
 package com.capstone.cab.controller;
 
+import java.text.Format;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +12,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.capstone.cab.exceptions.BookingException;
 import com.capstone.cab.exceptions.CustomerException;
+import com.capstone.cab.model.Admin;
+import com.capstone.cab.model.Cab;
 import com.capstone.cab.model.Customer;
+import com.capstone.cab.model.Driver;
+import com.capstone.cab.model.TripDetails;
 import com.capstone.cab.repository.CabRepo;
+import com.capstone.cab.service.AdminService;
 import com.capstone.cab.service.CustomerService;
+import com.capstone.cab.service.DriverService;
 import com.capstone.cab.service.LoginService;
+import com.capstone.cab.service.TripService;
 
 @Controller
 public class CustomerController {
@@ -25,6 +39,15 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService cservice;
+	
+	@Autowired
+	DriverService dservice;
+	
+	@Autowired
+	AdminService aservice;
+	
+	@Autowired
+	TripService tservice;
 	
 //	@Autowired
 //	private TripService ticketService;
@@ -149,7 +172,7 @@ public class CustomerController {
 		String password = (String) session.getAttribute("pwd");
 		int customerId = cservice.getCustomerId(userName, password);
 		Customer customer = cservice.deleteCustomer(customerId);
-		return "login";
+		return "home";
 
 	}
 
@@ -212,39 +235,154 @@ public class CustomerController {
 	
 	// ### AddTrip ###
 
-//		@RequestMapping(value = "/addTrip", method = RequestMethod.POST)
-//		public String save(@RequestParam int cabId,Model map, HttpServletRequest request,HttpSession session) throws BookingException {
-//			
-//			String userName = (String) session.getAttribute("uname");
-//			String password = (String) session.getAttribute("pwd");
-//			int customerId = cservice.getCustomerId(userName, password);
-//			
-//			Cab cab =cabrepo.findById(cabId).get(); 
-//			TripDetailDTO tripdetails = new TripDetailDTO();
-//			
-//			String sloc = request.getParameter("sloc");
-//			String destination = request.getParameter("destination");
-//			String mobile = request.getParameter("mobile");
-//			LocalDate fromdate = LocalDate.parse(request.getParameter("fromdate"));
-//			LocalDate todate = LocalDate.parse(request.getParameter("todate"));
-//			Integer customerId1=Integer. parseInt(request.getParameter("customerId"));
-//			
-//			tripdetails.setStartingLocation(sloc);
-//			tripdetails.setDestination(destination);
-//			tripdetails.setMobileNumber(mobile);
-//			tripdetails.setFromDate(fromdate);
-//			tripdetails.setToDate(todate);
-//			tripdetails.setCustomerId(customerId1);
-//			
-//			cabrepo.save(cab);
-//			ticketService.insertTicketDetails(tripdetails);
-//			
-//			map.addAttribute("ride", "Ride Booked Successfully");
-//			return "sucess";
-//			
-//		}
+		@RequestMapping(value = "/addTrip", method = RequestMethod.POST)
+		public String saveTrip(Model map, HttpServletRequest request,HttpSession session) throws BookingException  {
+			
+			String userName = (String) session.getAttribute("uname");
+			String password = (String) session.getAttribute("pwd");
+			int customerId = cservice.getCustomerId(userName, password);
+			 
+			TripDetails tripdetails = new TripDetails();
+			
+			String sloc = request.getParameter("sloc");
+			String destination = request.getParameter("destination");
+			Double distance = Double.parseDouble(request.getParameter("distance"));
+			LocalDate fromdate = LocalDate.parse(request.getParameter("fromdate"));
+			LocalDate todate = LocalDate.parse(request.getParameter("todate"));
+			Integer customerId1=Integer. parseInt(request.getParameter("customerId"));
+			
+			tripdetails.setStartingLocation(sloc);
+			tripdetails.setDestination(destination);
+			tripdetails.setDistanceInKM(distance);
+			tripdetails.setFromDate(fromdate);
+			tripdetails.setToDate(todate);
+			tripdetails.setCustomerId(customerId1);
+			
+			
+			tservice.insertTripDetails(tripdetails);
+			
+			map.addAttribute("ride", "Ride Booked Successfully");
+			return "sucess";
+			
+		}
 
 
+	  // List of Avail Driver
+    
+    @RequestMapping(value = "/avail", method = RequestMethod.GET)
+	public ModelAndView displayavail(HttpSession session) {
+    	String userName = (String) session.getAttribute("name");
+		String password = (String) session.getAttribute("pwd");
+		int customerId=cservice.getCustomerId(userName, password);
+		
+		ModelAndView mav = new ModelAndView("AvailCab");
+		List<Driver> avail= dservice.viewAvailDrivers();
+		mav.addObject("allavail", avail);
 
+		return mav;
+	}
+
+
+    		// Delete All Customer
+	
+ 			@RequestMapping(value="/deletecustomerlist/{customerId}" ,method=RequestMethod.GET)
+ 			public  String deleteCablist(@PathVariable("customerId") Integer customerId,Model map,HttpSession session){
+
+ 				String userName = (String) session.getAttribute("aname");
+ 				String password = (String) session.getAttribute("apwd");
+ 				int adminId=aservice.getAdminId(userName, password);
+ 				
+ 				Customer cus = cservice.deleteCustomer(customerId);
+ 		        map.addAttribute("customerId", cus.getCustomerId());
+ 				  cservice. deleteCustomer(customerId);
+ 				return "AdminHome";
+ 				
+ 			}
+ 			
+ 			// View All Trips
+ 			
+ 			
+ 			@RequestMapping(value="/getTrip" ,method=RequestMethod.GET)
+ 			public ModelAndView getTrip(Model map,HttpSession session) {
+ 				String userName = (String) session.getAttribute("name");
+ 				String password = (String) session.getAttribute("pwd");
+ 				int customerId=cservice.getCustomerId(userName, password);
+ 				
+ 				ModelAndView mav = new ModelAndView("TripOfCustomer");
+ 				
+ 			//	TripDetails tdetail = (TripDetails) tservice.getAllTripDetailsOfACustomer(customerId);
+ 				List<TripDetails> cabs= tservice.getTrips();
+
+ 				mav.addObject("allTrips", cabs);
+
+ 				return mav;
+ 				
+ 			}
+ 			
+ 			// Delete All Trips
+			
+			@RequestMapping(value="/deletetrip/{tripBookingId}" ,method=RequestMethod.GET)
+			public  String deleteTriplist(@PathVariable("tripBookingId") Integer tripBookingId,Model map,HttpSession session){
+
+				String userName = (String) session.getAttribute("name");
+ 				String password = (String) session.getAttribute("pwd");
+ 				int customerId=cservice.getCustomerId(userName, password);
+				
+				TripDetails trip = tservice.deleteTripDetails(tripBookingId);
+		        map.addAttribute("tripBookingId",trip.getTripBookingId());
+				  tservice. deleteTripDetails(tripBookingId);
+				return "CustomerHome";
+				
+			}
+			
+			// Update All Trips
+			
+			@RequestMapping(value="/updatetrip/{tripBookingId}/{startingLocation}/{destination}/{distanceInKM}/{fromDate}/{toDate}", 
+					method = RequestMethod.GET)
+			
+			public String updateProperty(ModelMap map,@PathVariable("tripBookingId") Integer tripBookingId,
+							@PathVariable("startingLocation") String startingLocation,@PathVariable("destination") String destination,
+							@PathVariable("distanceInKM") Double distanceInKM,@PathVariable("fromDate") LocalDate fromDate,
+							@PathVariable("toDate") LocalDate toDate,HttpServletRequest request,HttpSession session ,TripDetails tripDetails,Customer customer) {
+				
+							
+							int customerId=customer.getCustomerId();
+							map.addAttribute("customerId",customerId);
+							map.addAttribute("tripBookingId",tripBookingId);
+							map.addAttribute("startingLocation",startingLocation);
+							map.addAttribute("destination",destination);
+							map.addAttribute("distanceInKM",distanceInKM);
+							map.addAttribute("fromDate",fromDate);
+							map.addAttribute("toDate",toDate);
+							
+							return "AllTripUpdate";
+							}
+			
+			
+			@RequestMapping(value="/updateTripNow/{customerId}/{tripBookingId}", method = RequestMethod.GET)
+			public String updateTripNow(ModelMap map,@PathVariable("customerId") Integer customerId,@PathVariable("tripBookingId") Integer tripBookingId,
+					HttpServletRequest request,HttpSession session ,TripDetails tripDetails,Customer customer) {
+				
+				Integer tripBookingid=Integer.parseInt(request.getParameter("tripBookingId")) ;
+				Integer customerid=Integer.parseInt(request.getParameter("customerId")) ;
+				String startingLocation=request.getParameter("startingLocation");
+				String destination = request.getParameter("destination");
+				
+				Double distanceInKM = Double.parseDouble(request.getParameter("distanceInKM"));
+				LocalDate fromDate=LocalDate.parse(request.getParameter("fromDate"));
+				LocalDate toDate=LocalDate.parse(request.getParameter("toDate"));
+			
+				customer.setCustomerId(customerid);
+				tripDetails.setTripBookingId(tripBookingid);
+				tripDetails.setStartingLocation(startingLocation);
+				tripDetails.setDestination(destination);
+				tripDetails.setDistanceInKM(distanceInKM);
+				tripDetails.setFromDate(fromDate);
+				tripDetails.setToDate(toDate);
+				
+				tservice.editTrips(tripDetails);
+				map.addAttribute("status","Trip Updated Successfully");
+				return "CustomerHome";
+				}
 
 }

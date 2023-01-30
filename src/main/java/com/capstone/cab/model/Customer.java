@@ -37,9 +37,11 @@ public class Customer extends AbstractUser {
 	private Integer customerId;
 
 	
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true,fetch = FetchType.EAGER) 
-	  //@OneToOne(cascade = CascadeType.ALL, mappedBy = "customer" ) private
-	  List<TripDetails> triplist = new ArrayList<>();
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval =
+	 * true,fetch = FetchType.EAGER) //@OneToOne(cascade = CascadeType.ALL, mappedBy
+	 * = "customer" ) private List<TripDetails> triplist = new ArrayList<>();
+	 */
 	 
 
 }

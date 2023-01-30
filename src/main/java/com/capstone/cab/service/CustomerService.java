@@ -27,6 +27,8 @@ public class CustomerService implements CustomerMethod {
 		cusrepo.save(cust);
 	}
 	
+	// Validation
+	
 	public int getCustomerId(String userName, String password) {
 		List<Customer> cus = (List<Customer>)cusrepo.findAll();
 		int customerid = 0;
@@ -105,6 +107,7 @@ public class CustomerService implements CustomerMethod {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
 		
 		// Delete table customer
 		
